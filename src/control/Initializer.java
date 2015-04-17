@@ -105,7 +105,6 @@ public class Initializer {
 	private BufferedReader createBufferedReader(Socket socket) {
 		
 		BufferedReader inFromServer = null;
-		
 		try {
 			inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		} catch (IOException e) {
