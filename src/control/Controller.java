@@ -10,19 +10,15 @@ import communication.Sender;
 
 public class Controller {
 
-	private GUI userInterface;
 	private Sender sender;
 	
-	public Controller(GUI userInterface, Sender sender) {
+	public Controller(Sender sender) {
 		
-		this.userInterface = userInterface;
 		this.sender = sender;
 	
-		logIn("Linda", OpCodes.TRADER);
+		//logIn("Linda", OpCodes.TRADER);
 		
-		while (true) {
-			
-		}
+
 /*		
 		Order order = new Order(System.currentTimeMillis());
 		order.setOrderOwner("Li\nnda\n");
@@ -32,7 +28,7 @@ public class Controller {
 */		
 	}
 	
-	private void logIn(String nickname, int userType) {
+	public void logIn(String nickname, int userType) {
 		
 		boolean logInSuccessful = sender.logIn(nickname, userType);
 		
