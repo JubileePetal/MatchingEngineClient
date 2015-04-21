@@ -1,5 +1,10 @@
 package control;
+
+import com.google.gson.Gson;
+import models.Message;
+import models.OpCodes;
 import models.Order;
+import models.User;
 import communication.Sender;
 
 
@@ -13,12 +18,23 @@ public class Controller {
 		this.userInterface = userInterface;
 		this.sender = sender;
 	
+		logIn("Linda", OpCodes.TRADER);
+		
+		while (true) {
+			
+		}
+/*		
 		Order order = new Order(System.currentTimeMillis());
 		order.setOrderOwner("Li\nnda\n");
 		order.setOrderType(0, 1, 2);
 		order.setOrderQuantity(20);
 		sender.sendOrder(order);
+*/		
+	}
+	
+	private void logIn(String nickname, int userType) {
 		
-		System.out.println("sent order, connected.");
+		boolean logInSuccessful = sender.logIn(nickname, userType);
+		
 	}
 }
