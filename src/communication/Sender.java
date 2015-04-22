@@ -68,7 +68,7 @@ public class Sender {
 		
 		Message message = new Message();
 		message.setType(OpCodes.LOG_IN);
-		message.setMessage(gsonUser);
+		message.setJson(gsonUser);
 		
 		String gsonMessage = gson.toJson(message);
 		
