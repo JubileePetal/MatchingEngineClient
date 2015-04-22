@@ -13,13 +13,19 @@ import control.Controller;
 public class Receiver implements Runnable {
 
 	private Controller controller; 
-	BufferedReader inFromServer;
-	Gson gson;
+	private BufferedReader inFromServer;
+	private Gson gson;
 	
-	public Receiver(Controller controller, BufferedReader reader) {
-		this.controller = controller;
-		this.inFromServer = reader;
+	public Receiver() {
 		gson = new Gson();
+	}
+	
+	public void addBufferedReader(BufferedReader reader) {
+		inFromServer = reader;
+	}
+	
+	public void addController(Controller controller) {
+		this.controller = controller;
 	}
 
 	@Override
@@ -38,15 +44,18 @@ public class Receiver implements Runnable {
 		int messageType = message.getType();
 		
 		switch (messageType) {
-			case OpCodes.LOG_IN_ACCEPTED: break; // SET MODEL TO HAVE THIS
+			case OpCodes.LOG_IN_ACCEPTED: System.out.println("Log-in accepted");
+											controller.nowLoggedIn();
+											System.out.println(message.getJson());
+										   break; // SET MODEL TO HAVE THIS
 		}
 	}
 	
-	private Message unpackMessage(String received) {
+	public Message unpackMessage(String received) {
 		return gson.fromJson(received, Message.class);
 	}
 	
-	private String readFromServer() {
+	public String readFromServer() {
 		
 		String received = null;
 		

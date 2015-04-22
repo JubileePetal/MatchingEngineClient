@@ -1,6 +1,8 @@
 package control;
 
 import com.google.gson.Gson;
+
+import models.DataHolder;
 import models.Message;
 import models.OpCodes;
 import models.Order;
@@ -11,14 +13,9 @@ import communication.Sender;
 public class Controller {
 
 	private Sender sender;
+	private DataHolder dataHolder;
 	
-	public Controller(Sender sender) {
-		
-		this.sender = sender;
-	
-		//logIn("Linda", OpCodes.TRADER);
-		
-
+	public Controller() {
 /*		
 		Order order = new Order(System.currentTimeMillis());
 		order.setOrderOwner("Li\nnda\n");
@@ -28,9 +25,24 @@ public class Controller {
 */		
 	}
 	
-	public void logIn(String nickname, int userType) {
+	public void nowLoggedIn() {
+		dataHolder.loggedIn();
+	}
+	
+	public void addDataHolder(DataHolder dataHolder) {
+		this.dataHolder = dataHolder;
+	}
+	
+	public void addSender(Sender sender) {
+		this.sender = sender;
+	}
+	
+	public void attemptLogIn(String nickname, int userType) {
 		
 		boolean logInSuccessful = sender.logIn(nickname, userType);
 		
+		if(!logInSuccessful) {
+			/* another log in prompt?!*/
+		}
 	}
 }

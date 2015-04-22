@@ -5,10 +5,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import view.GUI;
+
 import communication.Sender;
 
 import control.Controller;
-import control.GUI;
 import control.Initializer;
 
 

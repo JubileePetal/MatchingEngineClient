@@ -15,9 +15,12 @@ public class Sender {
 	DataOutputStream outToServer;
 	Gson gson;
 	
-	public Sender(DataOutputStream outToServer) {
-		this.outToServer = outToServer;
+	public Sender() {
 		gson = new Gson();
+	}
+	
+	public void addOutputStream(DataOutputStream outputStream) {
+		outToServer = outputStream;
 	}
 	
 	public void sendOrder(Order order) {
@@ -69,18 +72,19 @@ public class Sender {
 		
 		String gsonMessage = gson.toJson(message);
 		
-		send(gsonMessage);
-		
-		return true;
+		return send(gsonMessage);
 	}
 	
-	private void send(String message) {
+	private boolean send(String message) {
+		
+		boolean isLogInSuccessful = true;
 		
 		try {
 			outToServer.writeBytes(message + '\n');
 		} catch (IOException e) {
 			System.out.println("Couldn't send!");
+			isLogInSuccessful = false;
 		}
-		
+		return isLogInSuccessful;
 	}
 }
