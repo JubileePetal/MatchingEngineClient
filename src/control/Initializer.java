@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
+
+import communication.Receiver;
 import communication.Sender;
 
 public class Initializer {
@@ -25,10 +27,11 @@ public class Initializer {
 		
 		DataOutputStream outToServer = createOutputStream(socket);
 		BufferedReader inFromServer = createBufferedReader(socket);
-		
-		GUI userInterface = new GUI();
+
 		Sender sender = new Sender(outToServer);
-		controller = new Controller(userInterface, sender);
+		controller = new Controller(sender);
+		GUI userInterface = new GUI(controller);
+		Receiver receiver = new Receiver(controller, inFromServer);
 		
 		/*
 		
