@@ -10,6 +10,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import view.GUI;
+import view.LogInPanel;
+
+import models.DataHolder;
+
 import com.google.gson.Gson;
 
 import communication.Receiver;
@@ -18,77 +23,96 @@ import communication.Sender;
 public class Initializer {
 
 	private Controller controller;
+	private Socket socket;
+	private DataOutputStream outToServer;
+	private BufferedReader inFromServer;
+	private Sender sender;
+	private Receiver receiver;
+	private GUI userInterface;
+	private DataHolder dataHolder;
 	
 	public Initializer(String host, int port) {
 		
 		System.out.println("Attempting to connect to " + host + " on port " + port);
 
-		Socket socket = initializeSocket(host, port);
-		
+		// Initialize Communication
+		socket = initializeSocket(host, port);
+/*		
 		DataOutputStream outToServer = createOutputStream(socket);
 		BufferedReader inFromServer = createBufferedReader(socket);
 
-		Sender sender = new Sender(outToServer);
-		controller = new Controller(sender);
-		GUI userInterface = new GUI(controller);
-		Receiver receiver = new Receiver(controller, inFromServer);
-		
-		/*
-		
-		
-		List<Double> list = new ArrayList<Double>() {
-		    public boolean add(Double mt) {
-		        int index = Collections.binarySearch(this, mt);
-		        if (index < 0) index = ~index;
-		        super.add(index, mt);
-		        return true;
-		    }
-		};
-		
-		list.add(2.0);
-		list.add(1.0);
-		list.add(4.0);
-		list.add(3.0);
-		
-		for(Double val : list) {
-			System.out.println(val);
-		}
+		Sender sender = new Sender();
+		Receiver receiver = new Receiver();
 
-		Gson gson = new Gson();
-		String sendy = gson.toJson(new Order());
+		// Initialize Model View Controller
+		controller = new Controller();		
+		GUI userInterface = new GUI();
+		DataHolder dataHolder = new DataHolder();		
+		
+		// Establish dependencies
+		sender.addOutputStream(outToServer);
+		receiver.addBufferedReader(inFromServer);
+		receiver.addController(controller);
+		
+		controller.addSender(sender);
+		controller.addDataHolder(dataHolder);
+		
+		userInterface.addController(controller);
+		
+		dataHolder.addObserver(userInterface);
+
+		
+		Thread t = new Thread(receiver);
+		t.start();
+		
+		userInterface.logInPrompt();
 		
 		while(true) {
-						
-			try {
-				sentence = inFromUser.readLine();
-			} catch (IOException e) {}
-			try {
-				outToServer.writeBytes(sendy + '\n');
-			} catch (IOException e) {}
 			
-			System.out.println("sent");
-			
-			String modifiedSentence = null;
-			try {
-				modifiedSentence = inFromServer.readLine();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("FROM SERVER: " + modifiedSentence);
-			try {
-				socket.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
-		
-
-		*/
-
-		
+*/	
 	}
+	public void promptUserToLogin() {
+		userInterface.logInPrompt();
+	}
+	
+	public void startListeningToServer() {
+		Thread t = new Thread(receiver);
+		t.start();
+	}
+
+	public void establishDependencies() {
+		
+		sender.addOutputStream(outToServer);
+		receiver.addBufferedReader(inFromServer);
+		receiver.addController(controller);
+		
+		controller.addSender(sender);
+		controller.addDataHolder(dataHolder);
+		
+		userInterface.addController(controller);
+		
+		dataHolder.addObserver(userInterface);
+	}
+	
+	public void initializeCommunicationObjects() {
+		
+		outToServer = createOutputStream(socket);
+		inFromServer = createBufferedReader(socket);
+		
+		sender = new Sender();
+		receiver = new Receiver();
+
+	}
+	
+	public void initializeMVC() {
+		
+		controller = new Controller();		
+		userInterface = new GUI();
+		dataHolder = new DataHolder();	
+	}
+	
+	
 	
 	private Socket initializeSocket(String host, int port) {
 
