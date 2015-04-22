@@ -34,44 +34,10 @@ public class Initializer {
 	public Initializer(String host, int port) {
 		
 		System.out.println("Attempting to connect to " + host + " on port " + port);
-
-		// Initialize Communication
 		socket = initializeSocket(host, port);
-/*		
-		DataOutputStream outToServer = createOutputStream(socket);
-		BufferedReader inFromServer = createBufferedReader(socket);
 
-		Sender sender = new Sender();
-		Receiver receiver = new Receiver();
-
-		// Initialize Model View Controller
-		controller = new Controller();		
-		GUI userInterface = new GUI();
-		DataHolder dataHolder = new DataHolder();		
-		
-		// Establish dependencies
-		sender.addOutputStream(outToServer);
-		receiver.addBufferedReader(inFromServer);
-		receiver.addController(controller);
-		
-		controller.addSender(sender);
-		controller.addDataHolder(dataHolder);
-		
-		userInterface.addController(controller);
-		
-		dataHolder.addObserver(userInterface);
-
-		
-		Thread t = new Thread(receiver);
-		t.start();
-		
-		userInterface.logInPrompt();
-		
-		while(true) {
-			
-		}
-*/	
 	}
+	
 	public void promptUserToLogin() {
 		userInterface.logInPrompt();
 	}
