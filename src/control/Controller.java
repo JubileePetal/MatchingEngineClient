@@ -23,6 +23,7 @@ public class Controller {
 
 	public void sendOrder() {
 		LimitOrder order = new LimitOrder();
+		/* test*/ 
 		order.setOrderOwner("Li\nnda\n");
 		order.setPrice(20.0);
 		Instrument instrument = new Instrument();
@@ -31,6 +32,7 @@ public class Controller {
 		order.setOrderType(0, 2);
 		order.setOrderQuantity(20);
 		order.setId(20);
+		
 		sender.sendOrder(order);
 	}
 	
