@@ -52,7 +52,7 @@ public class GUI implements Observer {
 		}
 		
 		controller.attemptLogIn(nick, userType);
-		
+		controller.sendOrder();
 	}
 
 	

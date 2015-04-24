@@ -3,6 +3,8 @@ package control;
 import com.google.gson.Gson;
 
 import models.DataHolder;
+import models.Instrument;
+import models.LimitOrder;
 import models.Message;
 import models.OpCodes;
 import models.Order;
@@ -16,13 +18,22 @@ public class Controller {
 	private DataHolder dataHolder;
 	
 	public Controller() {
-/*		
-		Order order = new Order(System.currentTimeMillis());
+	
+	}
+
+	public void sendOrder() {
+		LimitOrder order = new LimitOrder();
+		/* test*/ 
 		order.setOrderOwner("Li\nnda\n");
-		order.setOrderType(0, 1, 2);
+		order.setPrice(20.0);
+		Instrument instrument = new Instrument();
+		instrument.setAbbreviation("ERB");
+		order.setInstrument(instrument);
+		order.setOrderType(0, 2);
 		order.setOrderQuantity(20);
+		order.setId(20);
+		
 		sender.sendOrder(order);
-*/		
 	}
 	
 	public void nowLoggedIn() {

@@ -25,36 +25,15 @@ public class Sender {
 	
 	public void sendOrder(Order order) {
 		
-		Gson gson = new Gson();
-		final String sendy = gson.toJson(order);
+		String json = gson.toJson(order);
 		
-		System.out.println(sendy);
-		Thread t = new Thread(new Runnable() {
+		Message message = new Message();
+		message.setType(OpCodes.ORDER);
+		message.setJson(json);
 
-			@Override
-			public void run() {
-				try {
-					outToServer.writeBytes(sendy + '\n' + sendy + '\n' + sendy + '\n');
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-			}
-			
-		});
-	
-		try {
-			t.start();
-			outToServer.writeBytes(sendy + '\n' + sendy + '\n' + sendy + '\n');
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		String jsonMsg = gson.toJson(message);
 		
-		while(true) {
-			
-		}
+		send(jsonMsg);
 
 	}
 	
@@ -77,14 +56,14 @@ public class Sender {
 	
 	private boolean send(String message) {
 		
-		boolean isLogInSuccessful = true;
+		boolean success = true;
 		
 		try {
 			outToServer.writeBytes(message + '\n');
 		} catch (IOException e) {
 			System.out.println("Couldn't send!");
-			isLogInSuccessful = false;
+			success = false;
 		}
-		return isLogInSuccessful;
+		return success;
 	}
 }
