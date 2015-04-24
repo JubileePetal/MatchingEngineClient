@@ -1,6 +1,6 @@
 package control;
 
-public class Main {
+public class MainClient {
 
 	public static void main(String[] args) {
 		
