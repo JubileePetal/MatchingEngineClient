@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 
 import models.DataHolder;
 import models.Instrument;
-import models.LimitOrder;
 import models.Message;
 import models.OpCodes;
 import models.Order;
@@ -22,16 +21,19 @@ public class Controller {
 	}
 
 	public void sendOrder() {
-		LimitOrder order = new LimitOrder();
-		/* test*/ 
-		order.setOrderOwner("Li\nnda\n");
-		order.setPrice(20.0);
+		/* TEST */
 		Instrument instrument = new Instrument();
 		instrument.setAbbreviation("ERB");
+		instrument.setName("Ericsson B");
+		instrument.setType(OpCodes.SHARE);
+		
+		Order order = new Order();
+		order.setToBuyOrder();
+		order.setTypeOfOrder(OpCodes.MARKET_ORDER);
 		order.setInstrument(instrument);
-		order.setOrderType(0, 2);
-		order.setOrderQuantity(20);
-		order.setId(20);
+		order.setOrderOwner("Linder");
+		order.setOrderQuantity(40);
+		order.setPrice(30.0);
 		
 		sender.sendOrder(order);
 	}
