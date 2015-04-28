@@ -39,10 +39,6 @@ public class Controller {
 		
 	}
 	
-	public void nowLoggedIn() {
-		dataHolder.loggedIn();
-	}
-	
 	public void addDataHolder(DataHolder dataHolder) {
 		this.dataHolder = dataHolder;
 	}

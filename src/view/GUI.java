@@ -66,8 +66,17 @@ public class GUI implements Observer {
 		
 		lordFrame.add(splitPanel.buildSplitPanel());
 		
+
 		lordFrame.setVisible(true);
 		
+
+
+		
+		/***TEEEEEEEEEEEEEEEST**/
+		
+		
+	
+		/***********************/
 
 	}
 	
@@ -114,9 +123,6 @@ public class GUI implements Observer {
 			lordFrame.setVisible(true);
 		}
 		//System.out.println ("View      : Observable is " + observed.getClass() + ", object passed is " + objectChanged.getClass());
-		if(dataHolder.isLoggedIn()) {
-			System.out.println("here: " + observed.getClass());
-		}
 		
 	}
 

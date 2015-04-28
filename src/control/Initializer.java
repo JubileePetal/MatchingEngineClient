@@ -59,9 +59,9 @@ public class Initializer {
 		sender.addOutputStream(outToServer);
 		receiver.addBufferedReader(inFromServer);
 		receiver.addController(controller);
+		receiver.addDataHolder(dataHolder);
 		
 		controller.addSender(sender);
-		controller.addDataHolder(dataHolder);
 		
 		userInterface.addController(controller);
 		

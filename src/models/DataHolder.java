@@ -1,13 +1,14 @@
 package models;
 
+import java.util.HashMap;
 import java.util.Observable;
 
 public class DataHolder extends Observable {
-
-	boolean loggedIn;
+	
+	private HashMap<String, CurrentStateOfInstrument> instrumentStates;
 	
 	public DataHolder() {
-		loggedIn = false;
+		instrumentStates = new HashMap<String, CurrentStateOfInstrument>();
 	}
 	
 	private void update() {
@@ -16,16 +17,15 @@ public class DataHolder extends Observable {
 	}
 	
 	public void loggedIn() {
-		loggedIn = true;
 		update();
 	}
-	
-	public void loggedOut() {
-		loggedIn = false;
-		update();
-	}
-	
-	public boolean isLoggedIn() {
-		return loggedIn;
+
+	public void setInstruments(Instrument[] instruments) {
+		
+		for(Instrument instrument : instruments) {
+			String name = instrument.getName();
+			instrumentStates.put(name, new CurrentStateOfInstrument());
+		}
+		
 	}
 }
