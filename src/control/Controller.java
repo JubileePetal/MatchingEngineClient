@@ -31,7 +31,7 @@ public class Controller {
 		order.setToBuyOrder();
 		order.setTypeOfOrder(OpCodes.MARKET_ORDER);
 		order.setInstrument(instrument);
-		order.setOrderOwner("Linder");
+		order.setOrderOwner("Linda");
 		order.setOrderQuantity(40);
 		order.setPrice(30.0);
 		

@@ -43,6 +43,8 @@ public class Sender {
 		user.setUsername(nickname);
 		user.setUserType(userType);
 		
+		System.out.println("Nickname sent: " + nickname);
+		
 		String gsonUser = gson.toJson(user);
 		
 		Message message = new Message();

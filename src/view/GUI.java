@@ -89,7 +89,7 @@ public class GUI implements Observer {
 		} else {
 			System.exit(0);
 		}
-		
+		System.out.println("Nick: " + nick);
 		controller.attemptLogIn(nick, userType);
 		controller.sendOrder();
 	
