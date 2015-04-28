@@ -44,6 +44,13 @@ public class GUI implements Observer {
 		//lordFrame.setBackground(new Color(100, 100, 100));
 		lordFrame.setResizable(true);
 		
+		buildGUI();
+
+
+	}
+	
+	private void buildGUI(){
+		
 		views = new ArrayList<View>();							
 		View v1 = new View(OpStrings.HISTORY);
 		View v2 = new View(OpStrings.MD);
@@ -65,11 +72,8 @@ public class GUI implements Observer {
 		SplitPanel splitPanel = new SplitPanel(tabPanel,treeList);
 		lordFrame.add(splitPanel.buildSplitPanel());
 		
-		//lordFrame.setVisible(true);
-
-
+		
 	}
-	
 	
 
 	
@@ -113,9 +117,9 @@ public class GUI implements Observer {
 	}
 
 
-
-
-
+	public JFrame getLordFrame() {
+		return lordFrame;
+	}
 
 	@Override
 	public void update(Observable observed, Object objectChanged) {
@@ -125,6 +129,9 @@ public class GUI implements Observer {
 		if(lordFrame.isVisible()) {
 			// lotsa derp
 		} else {
+			
+			//buildGUI();
+			
 			lordFrame.setVisible(true);
 		}
 		//System.out.println ("View      : Observable is " + observed.getClass() + ", object passed is " + objectChanged.getClass());
