@@ -16,95 +16,34 @@ import javax.swing.tree.TreeSelectionModel;
 
 import models.Order;
 
-public class SplitPanel extends Observable {
+public class SplitPanel   {
 
 	private DefaultTreeModel model;
-	
 	private DefaultMutableTreeNode root;
-	private final JTree tree;
+	//private final JTree tree;
 	private TabPanel tabPanel;
+	private TreeList tlist;
 	
-	public SplitPanel(TabPanel tabPanel) {
+	public SplitPanel(TabPanel tabPanel, TreeList tlist) {
 		
-		this.tabPanel = tabPanel;
-		root  = buildNode(OpStrings.STOCK);
-		tree  = new JTree(root);
+		this.tabPanel 	= tabPanel;
+		this.tlist 		= tlist;
+
 		
 	}
 
 	public JSplitPane buildSplitPanel(){
 		
-		//tabPanel = new TabPanel();
 		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, 
-				buildExplorerPanel(), tabPanel);
+				tlist, tabPanel);
 		split.setDividerLocation(150);
 		return split;
 		
 		
 	}
-	
-	private JPanel buildExplorerPanel() {
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);		
-		FlowLayout flow = new FlowLayout();
-		flow.setAlignment(FlowLayout.LEFT);
-		panel.setLayout(flow);
-		
-		
-		String instrumentData [] = {"∙ Ericsson B", "∙ Apple"};
-		JList  instrumentList = new JList(instrumentData);
-		
-		
 
-		tree.getSelectionModel().setSelectionMode
-        (TreeSelectionModel.SINGLE_TREE_SELECTION);
-		model = (DefaultTreeModel) tree.getModel();
-		
-		tree.addTreeSelectionListener(new TreeSelectionListener() {
-		    public void valueChanged(TreeSelectionEvent e) {
-		        DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
-
-		    /* if nothing is selected */ 
-		        if (node == null) return;
-
-		    /* retrieve the node that was selected */ 
-		        Object nodeInfo = node.getUserObject();
-		        System.out.println(nodeInfo.toString());
-		        update(nodeInfo.toString());
-		    }
-		});
-
-
-		
-		
-				
-		for (int i = 0; i < instrumentData.length; i++) {
-			DefaultMutableTreeNode projectNode = buildNode(instrumentData[i]);		
-			model.insertNodeInto(projectNode, root, i);
-		}
-		
-		
-		
-		panel.add(tree);
-				
-		return panel;
-	}
-		
-	
-
-	
-	private DefaultMutableTreeNode buildNode(String name) {
-		DefaultMutableTreeNode node = new DefaultMutableTreeNode(name);
-		return node;
-	}
 	
 	
 	
-	private void update(String item){
-		
-		setChanged();
-		notifyObservers(item);
-		
-	}
+
 }

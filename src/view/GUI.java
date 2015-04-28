@@ -38,33 +38,25 @@ public class GUI implements Observer {
 		//lordFrame.setBackground(new Color(100, 100, 100));
 		lordFrame.setResizable(true);
 		
-		
-		/****Should probably have dynamic tabs but for now, three**/
-		
-		ViewBuilder v1 = new ViewBuilder(OpStrings.ORDERS);
-		ViewBuilder v2 = new ViewBuilder(OpStrings.HISTORY);
-		ViewBuilder v3 = new ViewBuilder(OpStrings.MD);
-		
-		/**														**/
-		
+									
+		View v1 = new View();
+		View v2 = new View();
+		View v3 = new View();
 		
 		TabPanel tabPanel = new TabPanel();
-		tabPanel.buildViews(v1,v2,v3);
-		SplitPanel splitPanel = new SplitPanel(tabPanel);
+		tabPanel.addTab(OpStrings.HISTORY, v1);
+		tabPanel.addTab(OpStrings.MD, v2);
+		tabPanel.addTab(OpStrings.ORDERS, v3);
+
 		
-		splitPanel.addObserver(v1);
-		splitPanel.addObserver(v2);
-		splitPanel.addObserver(v3);
+		TreeList treeList = new TreeList();
 		
-	
+		SplitPanel splitPanel = new SplitPanel(tabPanel,treeList);
 		lordFrame.add(splitPanel.buildSplitPanel());
 		
-		
-		/***TEEEEEEEEEEEEEEEST**/
-		
-		
-	
-		/***********************/
+		lordFrame.setVisible(true);
+
+
 	}
 	
 	
