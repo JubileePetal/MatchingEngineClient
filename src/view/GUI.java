@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -24,7 +25,10 @@ import models.OpCodes;
 
 public class GUI implements Observer {
 	
-	JFrame lordFrame;
+	private JFrame lordFrame;
+	
+	private ArrayList<View> views;
+	
 	
 	private Controller controller;
 	
@@ -38,10 +42,14 @@ public class GUI implements Observer {
 		//lordFrame.setBackground(new Color(100, 100, 100));
 		lordFrame.setResizable(true);
 		
-									
+		views = new ArrayList<View>();							
 		View v1 = new View();
 		View v2 = new View();
 		View v3 = new View();
+		
+		views.add(v1);
+		views.add(v2);
+		views.add(v3);
 		
 		TabPanel tabPanel = new TabPanel();
 		tabPanel.addTab(OpStrings.HISTORY, v1);
@@ -90,6 +98,16 @@ public class GUI implements Observer {
 	public void startGUI() {
 		lordFrame.setVisible(true);
 	}
+	
+	
+	
+
+	public ArrayList<View> getViews() {
+		return views;
+	}
+
+
+
 
 	@Override
 	public void update(Observable observed, Object objectChanged) {

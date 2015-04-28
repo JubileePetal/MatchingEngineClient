@@ -58,7 +58,7 @@ public class Initializer {
 		
 		sender.addOutputStream(outToServer);
 		receiver.addBufferedReader(inFromServer);
-		receiver.addController(controller);
+		receiver.addController(controller); 
 		receiver.addDataHolder(dataHolder);
 		
 		controller.addSender(sender);
@@ -66,6 +66,7 @@ public class Initializer {
 		userInterface.addController(controller);
 		
 		dataHolder.addObserver(userInterface);
+		updater.setViews(userInterface.getViews());
 	}
 	
 	public void initializeCommunicationObjects() {
