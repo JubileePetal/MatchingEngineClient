@@ -50,7 +50,7 @@ public class Receiver implements Runnable {
 		switch (messageType) {
 			case OpCodes.LOG_IN_ACCEPTED: logInAccepted(message);
 										   break; // SET MODEL TO HAVE THIS
-			case OpCodes.ORDER_UPDATE: 
+			case OpCodes.ORDER_UPDATE:
 				System.out.println("order update");
 			   
 			   break; // SET MODEL TO HAVE THIS
