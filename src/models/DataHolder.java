@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 
@@ -29,8 +30,15 @@ public class DataHolder extends Observable {
 		
 	}
 	
-	public String[] getInstrumentNames() {
-		return (String[]) instrumentStates.keySet().toArray();
+	public ArrayList<String> getInstrumentNames() {
+
+		ArrayList<String> names = new ArrayList<String>();
+		
+		for(String name : instrumentStates.keySet()) {
+			names.add(name);
+		}
+
+		return names;
 	}
 
 	public void addOrder(Order order) {
