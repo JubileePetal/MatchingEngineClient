@@ -29,13 +29,22 @@ public class Controller {
 		
 		Order order = new Order();
 		order.setToBuyOrder();
-		order.setTypeOfOrder(OpCodes.MARKET_ORDER);
+		order.setTypeOfOrder(OpCodes.LIMIT_ORDER);
 		order.setInstrument(instrument);
 		order.setOrderOwner("Linda");
 		order.setOrderQuantity(40);
 		order.setPrice(30.0);
 		
+		Order order2 = new Order();
+		order2.setToSellOrder();
+		order2.setTypeOfOrder(OpCodes.LIMIT_ORDER);
+		order2.setInstrument(instrument);
+		order2.setOrderOwner("Linda");
+		order2.setOrderQuantity(40);
+		order2.setPrice(30.0);
+		
 		sender.sendOrder(order);
+		sender.sendOrder(order2);
 		
 	}
 	

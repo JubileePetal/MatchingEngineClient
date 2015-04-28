@@ -11,6 +11,7 @@ import models.Instrument;
 import models.Message;
 import models.OpCodes;
 import models.Order;
+import models.Trade;
 
 import com.google.gson.Gson;
 
@@ -55,8 +56,14 @@ public class Receiver implements Runnable {
 										   break; // SET MODEL TO HAVE THIS
 			case OpCodes.ORDER_ADDED: orderAdded(message.getJson());
 										break;
+			case OpCodes.TRADE: tradeMade(message.getJson());
 
 		}
+	}
+	
+	public void tradeMade(String json) {
+		Trade trade = gson.fromJson(json, Trade.class);
+		System.out.println("Received a trade!");
 	}
 	
 	public void orderAdded(String json) {
