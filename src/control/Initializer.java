@@ -52,13 +52,12 @@ public class Initializer {
 		
 		updater = new Updater();
 	}
-	
 
 	public void establishDependencies() {
 		
 		sender.addOutputStream(outToServer);
 		receiver.addBufferedReader(inFromServer);
-		receiver.addController(controller);
+		receiver.addController(controller); 
 		receiver.addDataHolder(dataHolder);
 		
 		controller.addSender(sender);
@@ -66,6 +65,10 @@ public class Initializer {
 		userInterface.addController(controller);
 		
 		dataHolder.addObserver(userInterface);
+		updater.setViews(userInterface.getViews());
+		updater.setTreeList(userInterface.getTreeList());
+		updater.buildTree();
+		updater.setDataHolder(dataHolder);
 	}
 	
 	public void initializeCommunicationObjects() {

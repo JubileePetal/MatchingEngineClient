@@ -39,28 +39,16 @@ public class TreeList extends JPanel {
         (TreeSelectionModel.SINGLE_TREE_SELECTION);
 		model = (DefaultTreeModel) tree.getModel();
 		
-		tree.addTreeSelectionListener(new TreeSelectionListener() {
-		    public void valueChanged(TreeSelectionEvent e) {
-		        DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
 
-		    /* if nothing is selected */ 
-		        if (node == null) return;
-
-		    /* retrieve the node that was selected */ 
-		        Object nodeInfo = node.getUserObject();
-		        System.out.println(nodeInfo.toString());
-		        //update(nodeInfo.toString());
-		    }
-		});
 
 
 		
 		
 				
-		for (int i = 0; i < instrumentData.length; i++) {
-			DefaultMutableTreeNode projectNode = buildNode(instrumentData[i]);		
-			model.insertNodeInto(projectNode, root, i);
-		}
+//		for (int i = 0; i < instrumentData.length; i++) {
+//			DefaultMutableTreeNode projectNode = buildNode(instrumentData[i]);		
+//			model.insertNodeInto(projectNode, root, i);
+//		}
 		
 		
 		
@@ -68,6 +56,17 @@ public class TreeList extends JPanel {
 				
 		//return panel;
 	}
+	
+	
+	public void buildTreeNodes(String [] instrumentData){
+		
+		for (int i = 0; i < instrumentData.length; i++) {
+			DefaultMutableTreeNode projectNode = buildNode(instrumentData[i]);		
+			model.insertNodeInto(projectNode, root, i);
+		}
+		
+	}
+	
 	
 	private DefaultMutableTreeNode buildNode(String name) {
 		DefaultMutableTreeNode node = new DefaultMutableTreeNode(name);

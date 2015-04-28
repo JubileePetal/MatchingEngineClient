@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -16,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.JTree;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 import control.Controller;
@@ -24,7 +26,11 @@ import models.OpCodes;
 
 public class GUI implements Observer {
 	
-	JFrame lordFrame;
+	private JFrame lordFrame;
+	
+	private ArrayList<View> views;
+	//private JTree tree;
+	private TreeList treeList;
 	
 	private Controller controller;
 	
@@ -38,10 +44,14 @@ public class GUI implements Observer {
 		//lordFrame.setBackground(new Color(100, 100, 100));
 		lordFrame.setResizable(true);
 		
-									
-		View v1 = new View();
-		View v2 = new View();
-		View v3 = new View();
+		views = new ArrayList<View>();							
+		View v1 = new View(OpStrings.HISTORY);
+		View v2 = new View(OpStrings.MD);
+		View v3 = new View(OpStrings.ORDERS);
+		
+		views.add(v1);
+		views.add(v2);
+		views.add(v3);
 		
 		TabPanel tabPanel = new TabPanel();
 		tabPanel.addTab(OpStrings.HISTORY, v1);
@@ -49,7 +59,8 @@ public class GUI implements Observer {
 		tabPanel.addTab(OpStrings.ORDERS, v3);
 
 		
-		TreeList treeList = new TreeList();
+		treeList = new TreeList();
+		//tree = treeList.getTree();
 		
 		SplitPanel splitPanel = new SplitPanel(tabPanel,treeList);
 		lordFrame.add(splitPanel.buildSplitPanel());
@@ -62,6 +73,13 @@ public class GUI implements Observer {
 	
 
 	
+	public TreeList getTreeList() {
+		return treeList;
+	}
+
+
+
+
 	public void addController(Controller controller) {
 		this.controller = controller;
 	}
@@ -89,6 +107,15 @@ public class GUI implements Observer {
 	public void startGUI() {
 		lordFrame.setVisible(true);
 	}
+
+	public ArrayList<View> getViews() {
+		return views;
+	}
+
+
+
+
+
 
 	@Override
 	public void update(Observable observed, Object objectChanged) {

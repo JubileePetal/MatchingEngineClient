@@ -55,6 +55,7 @@ public class Receiver implements Runnable {
 										   break; // SET MODEL TO HAVE THIS
 			case OpCodes.ORDER_ADDED: orderAdded(message.getJson());
 										break;
+
 		}
 	}
 	

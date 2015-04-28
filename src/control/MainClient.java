@@ -8,6 +8,7 @@ public class MainClient {
 		int port = Integer.parseInt(args[1]);
 		
 		Initializer initializer = new Initializer(host, port);
+		initializer.createUpdater();
 		initializer.initializeCommunicationObjects();
 		initializer.initializeMVC();
 		initializer.establishDependencies();
