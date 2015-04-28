@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import models.DataHolder;
 import models.Instrument;
 import models.Message;
 import models.OpCodes;
@@ -17,6 +18,7 @@ public class Receiver implements Runnable {
 	public Controller controller; 
 	private BufferedReader inFromServer;
 	private Gson gson;
+	private DataHolder dataHolder;
 	
 	public Receiver() {
 		gson = new Gson();
@@ -56,13 +58,15 @@ public class Receiver implements Runnable {
 		Instrument[] instruments;
 		
 		System.out.println("Log-in accepted");
-		controller.nowLoggedIn();
+		
 		instruments = gson.fromJson(message.getJson(), Instrument[].class);
 		for(Instrument i : instruments) {
 			System.out
 					.println(i.getName());
 		}
 		System.out.println(message.getJson());
+		dataHolder.setInstruments(instruments);
+		dataHolder.loggedIn();
 	}
 	
 	public Message unpackMessage(String received) {
@@ -81,5 +85,10 @@ public class Receiver implements Runnable {
 		}
 		
 		return received;
+	}
+
+	public void addDataHolder(DataHolder dataHolder) {
+		this.dataHolder = dataHolder;
+		
 	}
 }
