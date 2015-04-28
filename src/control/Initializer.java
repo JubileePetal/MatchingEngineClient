@@ -78,8 +78,6 @@ public class Initializer {
 		dataHolder = new DataHolder();	
 	}
 	
-	
-	
 	private Socket initializeSocket(String host, int port) {
 
 		Socket socket = null;		

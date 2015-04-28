@@ -36,6 +36,7 @@ public class Controller {
 		order.setPrice(30.0);
 		
 		sender.sendOrder(order);
+		
 	}
 	
 	public void nowLoggedIn() {

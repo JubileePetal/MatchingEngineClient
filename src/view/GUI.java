@@ -1,17 +1,24 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 import control.Controller;
-
 import models.DataHolder;
 import models.OpCodes;
 
@@ -26,10 +33,44 @@ public class GUI implements Observer {
 		lordFrame = new JFrame();
 		lordFrame.setTitle("Matching Engine Client");
 		lordFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		lordFrame.setSize(700, 700);
+		lordFrame.setMinimumSize(new Dimension(800, 600));
+		lordFrame.setLocationRelativeTo(null);
+		//lordFrame.setBackground(new Color(100, 100, 100));
 		lordFrame.setResizable(true);
-
+		
+		
+		/****Should probably have dynamic tabs but for now, three**/
+		
+		ViewBuilder v1 = new ViewBuilder(OpStrings.ORDERS);
+		ViewBuilder v2 = new ViewBuilder(OpStrings.HISTORY);
+		ViewBuilder v3 = new ViewBuilder(OpStrings.MD);
+		
+		/**														**/
+		
+		
+		TabPanel tabPanel = new TabPanel();
+		tabPanel.buildViews(v1,v2,v3);
+		SplitPanel splitPanel = new SplitPanel(tabPanel);
+		
+		splitPanel.addObserver(v1);
+		splitPanel.addObserver(v2);
+		splitPanel.addObserver(v3);
+		
+	
+		lordFrame.add(splitPanel.buildSplitPanel());
+		
+		lordFrame.setVisible(true);
+		
+		
+		/***TEEEEEEEEEEEEEEEST**/
+		
+		
+	
+		/***********************/
 	}
+	
+	
+
 	
 	public void addController(Controller controller) {
 		this.controller = controller;
@@ -53,9 +94,9 @@ public class GUI implements Observer {
 		
 		controller.attemptLogIn(nick, userType);
 		controller.sendOrder();
+	
 	}
 
-	
 	public void startGUI() {
 		lordFrame.setVisible(true);
 	}
