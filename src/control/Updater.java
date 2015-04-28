@@ -1,7 +1,10 @@
 package control;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
+import javax.swing.JFrame;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
@@ -13,12 +16,13 @@ import view.OpStrings;
 import view.TreeList;
 import view.View;
 
-public class Updater {
+public class Updater implements Observer{
 
 	private ArrayList<View> views;
 	//private JTree tree;
 	private TreeList treeList;
 	private DataHolder dataHolder;
+	private JFrame lordFrame; 
 	
 	public Updater() {
 		// TODO Auto-generated constructor stub
@@ -29,16 +33,33 @@ public class Updater {
 	}
 
 	public void setTreeList(TreeList treeList) {
+
 		this.treeList = treeList;
 		addTreeListener();
 		
 		
 	}
 	
+	public void setLordFrame(JFrame lordFrame) {
+		this.lordFrame = lordFrame;
+	}
+
 	public void buildTree(){
 		
-		String instrumentData [] = {"∙ Ericsson B", "∙ Apple"};
-		treeList.buildTreeNodes(instrumentData);
+		String instrumentNames [] = {"∙ Ericsson B", "∙ Apple"};
+		
+		//String[] test = dataHolder.getInstrumentNames();
+		
+//		for(String s : test){
+//			
+//			System.out.println("Value: " + s);
+//			
+//		}
+		
+		
+		
+		
+		treeList.buildTreeNodes(instrumentNames);
 		
 	}
 	
@@ -60,9 +81,6 @@ public class Updater {
 		});
 
 	}
-
-	
-	
 	
 	public void setDataHolder(DataHolder dataHolder) {
 		this.dataHolder = dataHolder;
@@ -82,6 +100,25 @@ public class Updater {
 				
 			}
 		}
+		
+	}
+
+	
+	
+	@Override
+	public void update(Observable observed, Object objectChanged) {
+		
+		DataHolder dataHolder = (DataHolder)observed;
+		
+		if(lordFrame.isVisible()) {
+			// lotsa derp
+		} else {
+			
+			
+			buildTree();	
+			lordFrame.setVisible(true);
+		}
+		
 		
 	}
 

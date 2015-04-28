@@ -16,6 +16,8 @@ public class MainClient {
 		initializer.startListeningToServer();
 		
 		initializer.promptUserToLogin();
+		
+		
 
 	}
 

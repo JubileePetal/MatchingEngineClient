@@ -65,10 +65,12 @@ public class Initializer {
 		userInterface.addController(controller);
 		
 		dataHolder.addObserver(userInterface);
+		dataHolder.addObserver(updater);
 		updater.setViews(userInterface.getViews());
 		updater.setTreeList(userInterface.getTreeList());
-		updater.buildTree();
+		updater.setLordFrame(userInterface.getLordFrame());
 		updater.setDataHolder(dataHolder);
+	   // updater.buildTree();
 	}
 	
 	public void initializeCommunicationObjects() {
