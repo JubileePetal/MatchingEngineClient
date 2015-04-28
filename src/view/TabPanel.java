@@ -30,8 +30,12 @@ public class TabPanel extends JTabbedPane {
 	
 	public TabPanel() {
 		
+		this.setUI(new BasicTabbedPaneUI());
 		
-		buildTabbedPane();
+		//this.setBackground(new Color(100, 100, 100));
+		this.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		this.setTabPlacement(JTabbedPane.TOP);
+		//buildTabbedPane();
 	}
 	
 	

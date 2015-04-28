@@ -30,6 +30,7 @@ public class Initializer {
 	private Receiver receiver;
 	private GUI userInterface;
 	private DataHolder dataHolder;
+	private Updater updater;
 	
 	public Initializer(String host, int port) {
 		
@@ -46,6 +47,12 @@ public class Initializer {
 		Thread t = new Thread(receiver);
 		t.start();
 	}
+
+	public void createUpdater(){
+		
+		updater = new Updater();
+	}
+	
 
 	public void establishDependencies() {
 		
