@@ -54,7 +54,7 @@ public class GUI implements Observer {
 		SplitPanel splitPanel = new SplitPanel(tabPanel,treeList);
 		lordFrame.add(splitPanel.buildSplitPanel());
 		
-		lordFrame.setVisible(true);
+		//lordFrame.setVisible(true);
 
 
 	}
@@ -74,14 +74,13 @@ public class GUI implements Observer {
 		LogInPanel logInPanel = new LogInPanel();
 
 		if(logInPanel.logInAttemptConfirmed()) {
-			
-			nick = logInPanel.getName();
+			nick = logInPanel.getNickName();
 			userType = logInPanel.getUserType();
 			
 		} else {
 			System.exit(0);
 		}
-		System.out.println("Nick: " + nick);
+
 		controller.attemptLogIn(nick, userType);
 		controller.sendOrder();
 	

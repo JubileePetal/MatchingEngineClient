@@ -37,7 +37,6 @@ public class LogInPanel extends JPanel {
 		
 		int result = JOptionPane.showConfirmDialog(null,  this,
 				"Please enter nickname and usertype", JOptionPane.OK_CANCEL_OPTION);
-
 		return result == JOptionPane.OK_OPTION ? true : false;
 	}
 	
