@@ -55,18 +55,19 @@ public class Updater implements Observer{
 //			System.out.println("Value: " + s);
 //			
 //		}
-		
-		
 		ArrayList<String> instrumentData = dataHolder.getInstrumentNames();
+		String[] instruments = new String[instrumentData.size()];
+		
+
 		
 		for (int i = 0; i < instrumentData.size(); i++) {
-			
-			System.out.println("Heloooooooooo");
+			System.out.println("name: " + instrumentData.get(i));
+			instruments[i] = instrumentData.get(i);
 		}
 		
 		
 		
-		treeList.buildTreeNodes(instrumentNames);
+		treeList.buildTreeNodes(instruments);
 		
 	}
 	
