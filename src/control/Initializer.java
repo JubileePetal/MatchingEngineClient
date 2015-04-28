@@ -52,7 +52,6 @@ public class Initializer {
 		
 		updater = new Updater();
 	}
-	
 
 	public void establishDependencies() {
 		
@@ -67,6 +66,9 @@ public class Initializer {
 		
 		dataHolder.addObserver(userInterface);
 		updater.setViews(userInterface.getViews());
+		updater.setTreeList(userInterface.getTreeList());
+		updater.buildTree();
+		updater.setDataHolder(dataHolder);
 	}
 	
 	public void initializeCommunicationObjects() {

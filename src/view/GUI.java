@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.JTree;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 import control.Controller;
@@ -28,7 +29,8 @@ public class GUI implements Observer {
 	private JFrame lordFrame;
 	
 	private ArrayList<View> views;
-	
+	//private JTree tree;
+	private TreeList treeList;
 	
 	private Controller controller;
 	
@@ -43,9 +45,9 @@ public class GUI implements Observer {
 		lordFrame.setResizable(true);
 		
 		views = new ArrayList<View>();							
-		View v1 = new View();
-		View v2 = new View();
-		View v3 = new View();
+		View v1 = new View(OpStrings.HISTORY);
+		View v2 = new View(OpStrings.MD);
+		View v3 = new View(OpStrings.ORDERS);
 		
 		views.add(v1);
 		views.add(v2);
@@ -57,7 +59,8 @@ public class GUI implements Observer {
 		tabPanel.addTab(OpStrings.ORDERS, v3);
 
 		
-		TreeList treeList = new TreeList();
+		treeList = new TreeList();
+		//tree = treeList.getTree();
 		
 		SplitPanel splitPanel = new SplitPanel(tabPanel,treeList);
 		lordFrame.add(splitPanel.buildSplitPanel());
@@ -70,6 +73,13 @@ public class GUI implements Observer {
 	
 
 	
+	public TreeList getTreeList() {
+		return treeList;
+	}
+
+
+
+
 	public void addController(Controller controller) {
 		this.controller = controller;
 	}
@@ -98,13 +108,12 @@ public class GUI implements Observer {
 	public void startGUI() {
 		lordFrame.setVisible(true);
 	}
-	
-	
-	
 
 	public ArrayList<View> getViews() {
 		return views;
 	}
+
+
 
 
 

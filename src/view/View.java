@@ -22,9 +22,9 @@ public class View extends JPanel {
 	private String myName;
 	private DefaultTableModel model;
 	
-	public View() {
+	public View(String name) {
 
-		
+		myName = name;
 		this.setLayout(new BorderLayout());
 		table = new JTable();
 		model = (DefaultTableModel) table.getModel();
@@ -79,11 +79,20 @@ public class View extends JPanel {
 	
 	}
 
-	private void setTableData(Object[] data){
+	public void setTableData(Object[] data){
 
 		model.addRow(data);
+		table.repaint();
 	}
 	
+	
+	
+	public String getMyName() {
+		return myName;
+	}
+
+
+
 	public class FilterRenderer extends DefaultTableCellRenderer {
 	    @Override
 	    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
