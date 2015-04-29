@@ -51,6 +51,10 @@ public class DataHolder extends Observable {
 		update(instrumentState);
 		
 	}
+	
+	public InstrumentState getInstrumentState(String instrumentName) {
+		return instrumentStates.get(instrumentName);
+	}
 
 	public void addTrade(Trade trade) {
 		
