@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import models.BookStatus;
 import models.DataHolder;
 import models.Instrument;
 import models.Message;
@@ -58,9 +59,14 @@ public class Receiver implements Runnable {
 										break;
 			case OpCodes.TRADE: tradeMade(message.getJson());
 								break;
-			case OpCodes.MARKET_DATA: System.out.println(message.getJson());
+			case OpCodes.MARKET_DATA: marketDataReceived(message.getJson());
 										break;
 		}
+	}
+	
+	public void marketDataReceived(String json) {
+		BookStatus bookStatus = gson.fromJson(json, BookStatus.class);
+		dataHolder.newMD(bookStatus);
 	}
 	
 	public void tradeMade(String json) {

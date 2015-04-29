@@ -9,6 +9,7 @@ import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 
 import models.DataHolder;
 import models.InstrumentState;
@@ -127,6 +128,12 @@ public class Updater implements Observer{
 					v.setTableData(is.getTrades());
 					
 				}
+				
+				if(v.getMyName().equals(OpStrings.MD) ){
+					
+					v.setTableData(is.getMarketData());
+					
+				}
 			
 
 						
@@ -148,7 +155,7 @@ public class Updater implements Observer{
 	@Override
 	public void update(Observable observed, Object objectChanged) {
 		
-		
+		System.out.println("------------ Trying to update --------");
 	
 		
 		DataHolder dataHolder = (DataHolder)observed;
@@ -160,28 +167,28 @@ public class Updater implements Observer{
 			
 			
 			
-			if(is.getInstrumentName().equals(currentInstrument)){
+			if(currentInstrument != null && 
+					!currentInstrument.equals(OpStrings.STOCK) && 
+					is.getInstrumentName().equals(currentInstrument)){
 				
-				System.out.println("UPDAAAAAAATE");
-				ArrayList<Object[]> testList = new ArrayList<Object []>();
-				
-				Object [] o1 = {"3333", "13", "66", "Sell"};
-				Object [] o2 = {"4444", "144", "8", "Buy"};
-				Object [] o3 = {"6666", "10", "90", "Sell"};
-				Object [] o4 = {"222", "123", "63", "Buy"};
-				
-				testList.add(o1);
-				testList.add(o2);
-				testList.add(o3);
-				testList.add(o4);
 				
 				
 				for(View v : views){
 					
-					if(v.getMyName() == OpStrings.ORDERS){
+					if(v.getMyName().equals(OpStrings.ORDERS)){			
+			
+						v.setTableData(is.getOrders());
+					}
+					
+					if(v.getMyName().equals(OpStrings.TRADES) ){
 						
-						System.out.println("HERE I SET THE DATA");
-						//v.setTableData(testList);
+						v.setTableData(is.getTrades());
+						
+					}
+					
+					if(v.getMyName().equals(OpStrings.MD) ){
+						
+						v.setTableData(is.getMarketData());
 						
 					}
 					
@@ -195,7 +202,13 @@ public class Updater implements Observer{
 		} else {
 			
 			
-			buildTree();	
+			buildTree();
+			/*
+			TreePath path = treeList.getTree().getPathForRow(2);
+			treeList.getTree().setExpandsSelectedPaths(true);
+			treeList.getTree().setSelectionPath(path);
+			treeList.getTree().scrollPathToVisible(path);
+			*/
 			lordFrame.setVisible(true);
 		}
 		

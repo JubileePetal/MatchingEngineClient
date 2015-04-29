@@ -5,8 +5,7 @@ import java.util.HashMap;
 
 public class InstrumentState {
 
-	//ArrayList<Trade> trades;
-	//ArrayList<Order> orders;
+	BookStatus marketData;
 	HashMap<Long, Order> orders;
 	HashMap<Long, Trade> trades;
 
@@ -14,12 +13,12 @@ public class InstrumentState {
 	private String myInstrument;
 	
 	public InstrumentState(String nickname, String instrumentName) {
-		//orders = new ArrayList<Order>();
+		
 		myInstrument = instrumentName;
 		myNickname = nickname;
 		orders = new HashMap<Long,Order>();
 		trades = new HashMap<Long,Trade>();
-		//trades = new ArrayList<Trade>();
+
 	}
 
 	public void addOrder(Order order) {
@@ -120,5 +119,51 @@ public class InstrumentState {
 	
 	public String getInstrumentName() {
 		return myInstrument;
+	}
+
+	
+	public void newMD(BookStatus bookStatus) {
+		marketData = bookStatus;
+		
+	}
+
+	public ArrayList<Object[]> getMarketData() {
+		
+		ArrayList<Object[]> MD = new ArrayList<Object[]>();
+		
+		if(marketData != null) {
+			for(Level level : marketData.getBuyLevels()) {
+				Object[] levelInfo = new Object[4];
+				levelInfo[0] = level.getQuantity();
+				levelInfo[1] = level.getPrice();
+				levelInfo[2] = "";
+				levelInfo[3] = "";
+				MD.add(levelInfo);
+			}
+			
+			ArrayList<Level> sellLevels = marketData.getSellLevels();
+			
+			for(int i = 0; i < marketData.getSellLevels().size(); i++) {
+				if(MD.size() < i+1) {
+					Object[] levelInfo = new Object[4];
+					levelInfo[0] = "";
+					levelInfo[1] = "";
+					levelInfo[2] = sellLevels.get(i).getPrice();
+					levelInfo[3] = sellLevels.get(i).getQuantity();
+				} else {
+					MD.get(i)[2] = sellLevels.get(i).getPrice();
+					MD.get(i)[3] = sellLevels.get(i).getQuantity();
+				}
+			}
+
+			
+			for(Object[] o : MD) {
+				System.out.println("Buy price" + o[0] + " buy quant " + o[1] + " sell quant " + o[2] + " sell price " + o[3]);
+			}
+		}
+		
+
+		
+		return MD;
 	}
 }

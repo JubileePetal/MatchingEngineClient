@@ -11,7 +11,7 @@ public class DataHolder extends Observable {
 	
 	public DataHolder() {
 		instrumentStates = new HashMap<String, InstrumentState>();
-	}
+	}	
 	
 	private void update(InstrumentState instrumentState) {
 		setChanged();
@@ -78,5 +78,14 @@ public class DataHolder extends Observable {
 	public void setNickName(String nick) {
 		this.myNickname = nick;
 		
+	}
+
+	public void newMD(BookStatus bookStatus) {
+		String instrumentName = bookStatus.getInstrumentName();
+		InstrumentState instrumentState = instrumentStates.get(instrumentName);
+		if(instrumentState != null) {
+			instrumentState.newMD(bookStatus);
+			update(instrumentState);
+		}
 	}
 }
