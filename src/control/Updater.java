@@ -109,7 +109,8 @@ public class Updater implements Observer{
 			
 			v.setTitledBorder(instrumentName);
 			//System.out.println(v.getMyName() + " is the name I got.");
-			if(v.getMyName() == OpStrings.ORDERS){
+			if(v.getMyName() == OpStrings.ORDERS && 
+					!(instrumentName.equals(OpStrings.STOCK))){
 				
 //				ArrayList<Object[]> testList = new ArrayList<Object []>();
 //				
@@ -130,12 +131,9 @@ public class Updater implements Observer{
 				System.out.println("Instrument name:" + instrumentName);
 				InstrumentState is = dataHolder.getInstrumentState(instrumentName);
 				
-				if(is == null){
-					
-					System.out.println("Its nULL ;YDF");
-				}
+
 				
-				//v.setTableData(is.getOrders());
+				v.setTableData(is.getOrders());
 						
 					
 				
