@@ -38,11 +38,11 @@ public class Initializer {
 		socket = initializeSocket(host, port);
 
 	}
-	
+	/*
 	public void promptUserToLogin() {
 		userInterface.logInPrompt();
 	}
-	
+	*/
 	public void startListeningToServer() {
 		Thread t = new Thread(receiver);
 		t.start();
@@ -129,5 +129,26 @@ public class Initializer {
 			System.exit(0);
 		}
 		return outToServer;	
+	}
+	
+	public void logInPrompt() {
+
+		String nick = "Default";
+		int userType = 0;
+		
+		LogInPanel logInPanel = new LogInPanel();
+
+		if(logInPanel.logInAttemptConfirmed()) {
+			nick = logInPanel.getNickName();
+			userType = logInPanel.getUserType();
+			
+		} else {
+			System.exit(0);
+		}
+
+		controller.attemptLogIn(nick, userType);
+		controller.sendOrder(); // TODO REMOVE THIS SHIZ
+		dataHolder.setNickName(nick);
+	
 	}
 }

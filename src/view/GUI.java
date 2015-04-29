@@ -87,26 +87,6 @@ public class GUI implements Observer {
 	public void addController(Controller controller) {
 		this.controller = controller;
 	}
-	
-	public void logInPrompt() {
-
-		String nick = "Default";
-		int userType = 0;
-		
-		LogInPanel logInPanel = new LogInPanel();
-
-		if(logInPanel.logInAttemptConfirmed()) {
-			nick = logInPanel.getNickName();
-			userType = logInPanel.getUserType();
-			
-		} else {
-			System.exit(0);
-		}
-
-		controller.attemptLogIn(nick, userType);
-		controller.sendOrder();
-	
-	}
 
 	public void startGUI() {
 		lordFrame.setVisible(true);

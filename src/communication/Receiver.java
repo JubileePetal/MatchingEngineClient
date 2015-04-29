@@ -63,6 +63,7 @@ public class Receiver implements Runnable {
 	
 	public void tradeMade(String json) {
 		Trade trade = gson.fromJson(json, Trade.class);
+		dataHolder.addTrade(trade);
 		System.out.println("Received a trade!");
 	}
 	

@@ -7,6 +7,7 @@ import java.util.Observable;
 public class DataHolder extends Observable {
 	
 	private HashMap<String, InstrumentState> instrumentStates;
+	String myUserName;
 	
 	public DataHolder() {
 		instrumentStates = new HashMap<String, InstrumentState>();
@@ -48,6 +49,16 @@ public class DataHolder extends Observable {
 				instrumentStates.get(instrumentName);
 		instrumentState.addOrder(order);
 
+		
+	}
+
+	public void addTrade(Trade trade) {
+		
+		
+	}
+
+	public void setNickName(String nick) {
+		this.myUserName = nick;
 		
 	}
 }
