@@ -31,7 +31,7 @@ public class Controller {
 		order.setToBuyOrder();
 		order.setTypeOfOrder(OpCodes.LIMIT_ORDER);
 		order.setInstrument(instrument);
-		order.setOrderOwner("Linda");
+		order.setOrderOwner("Anna");
 		order.setOrderQuantity(40);
 		order.setPrice(30.0);
 		
@@ -39,7 +39,7 @@ public class Controller {
 		order2.setToSellOrder();
 		order2.setTypeOfOrder(OpCodes.LIMIT_ORDER);
 		order2.setInstrument(instrument);
-		order2.setOrderOwner("Linda");
+		order2.setOrderOwner("Anna");
 		order2.setOrderQuantity(40);
 		order2.setPrice(30.0);
 		
@@ -47,7 +47,7 @@ public class Controller {
 		order3.setToSellOrder();
 		order3.setTypeOfOrder(OpCodes.LIMIT_ORDER);
 		order3.setInstrument(instrument);
-		order3.setOrderOwner("Linda");
+		order3.setOrderOwner("Anna");
 		order3.setOrderQuantity(300);
 		order3.setPrice(40.0);
 		
@@ -55,7 +55,7 @@ public class Controller {
 		order4.setToBuyOrder();
 		order4.setTypeOfOrder(OpCodes.LIMIT_ORDER);
 		order4.setInstrument(instrument);
-		order4.setOrderOwner("Linda");
+		order4.setOrderOwner("Anna");
 		order4.setOrderQuantity(20);
 		order4.setPrice(20.0);
 		
@@ -63,7 +63,7 @@ public class Controller {
 		order5.setToBuyOrder();
 		order5.setTypeOfOrder(OpCodes.LIMIT_ORDER);
 		order5.setInstrument(instrument);
-		order5.setOrderOwner("Linda");
+		order5.setOrderOwner("Anna");
 		order5.setOrderQuantity(10);
 		order5.setPrice(25.0);
 		
@@ -71,7 +71,7 @@ public class Controller {
 		order6.setToBuyOrder();
 		order6.setTypeOfOrder(OpCodes.LIMIT_ORDER);
 		order6.setInstrument(instrument);
-		order6.setOrderOwner("Linda");
+		order6.setOrderOwner("Anna");
 		order6.setOrderQuantity(20);
 		order6.setPrice(25.0);
 		

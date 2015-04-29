@@ -19,12 +19,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import models.Order;
+
 public class Prompter {
 
 	public Prompter() {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	JTextField quantityField;
+	JComboBox typesCombo;
+	JTextField priceField;
+	
+	
 	public JPanel newOrderPrompt() {
 
 		
@@ -39,7 +47,7 @@ public class Prompter {
 		
 		JPanel typePanel = new JPanel(new BorderLayout());
 		String[] types = {OpStrings.BUY, OpStrings.SELL};
-		JComboBox typesCombo = new JComboBox(types);
+		typesCombo = new JComboBox(types);
 		
 		typePanel.add(new JLabel("Buy/Sell"), BorderLayout.WEST);
 		typePanel.add(typesCombo);
@@ -48,7 +56,7 @@ public class Prompter {
 		/**Quantity panel*/
 		
 		JPanel quantityPanel = new JPanel();
-		JTextField quantityField = new JTextField(7);
+		quantityField = new JTextField(7);
 		quantityPanel.add(new JLabel("Quantity"));
 		quantityPanel.add(quantityField);
 
@@ -73,7 +81,7 @@ public class Prompter {
         final JPanel pricePanel = new JPanel(); 
         pricePanel.add(new JLabel("Price: "));
         
-        JTextField priceField = new JTextField(7);
+        priceField = new JTextField(7);
         pricePanel.add(priceField); 
         final JCheckBox checkBox = new JCheckBox("Limit Order", true); 
         checkBox.setFocusPainted(false); 
@@ -108,7 +116,16 @@ public class Prompter {
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 //        frame.setVisible(true); 
     } 
+	
+	public Order getNewOrderInfo(){
 		
+		Order newOrder = new Order();
+		newOrder.setOrderQuantity(Integer.getInteger(quantityField.getText()));
+		
+		
+		
+		return newOrder;
+	}
 }
 
 
