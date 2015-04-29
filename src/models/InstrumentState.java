@@ -85,7 +85,7 @@ public class InstrumentState {
 		for(Order order : orders.values()) {
 			Object[] orderInfo = new Object[4];
 			orderInfo[0] = order.getId();
-			orderInfo[1] = order.isBuyOrSell();
+			orderInfo[1] = (order.isBuyOrSell() == OpCodes.BUY_ORDER) ? "Buy" : "Sell";
 			orderInfo[2] = order.getPrice();
 			orderInfo[3] = order.getQuantity();
 			orderInfoCollection.add(orderInfo);
@@ -105,7 +105,7 @@ public class InstrumentState {
 		for(Trade trade : trades.values()) {
 			Object[] tradeInfo = new Object[4];
 			tradeInfo[0] = trade.getTradeID();
-			tradeInfo[1] = (trade.getBuyer().equals(myNickname) ? OpCodes.BUY_ORDER : OpCodes.SELL_ORDER);
+			tradeInfo[1] = (trade.getBuyer().equals(myNickname) ? "Buy" : "Sell");
 			tradeInfo[2] = trade.getPrice();
 			tradeInfo[3] = trade.getQuantity();
 			tradeInfoCollection.add(tradeInfo);
