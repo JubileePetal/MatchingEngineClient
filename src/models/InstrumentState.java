@@ -29,10 +29,11 @@ public class InstrumentState {
 		}
 		
 		System.out.println("Put order id: " + id + " in list.");
+		getOrders();
 	}
 
 	public void addTrade(Trade trade) {
-		
+		//TODO HAVE TO CHANGE ORDERS SO BUYER AND SELLER RECEIVE DIFFERENT
 		int tradedQuantity = trade.getQuantity();		
 		
 		if(trade.getBuyer().equals(myNickname) && trade.getSeller().equals(myNickname)) {
@@ -52,7 +53,8 @@ public class InstrumentState {
 		}
 		synchronized(trades) {
 			trades.put(trade.getTradeID(), trade);
-		}		
+		}
+		getTrades();
 	}
 
 	
@@ -88,11 +90,11 @@ public class InstrumentState {
 			orderInfo[3] = order.getQuantity();
 			orderInfoCollection.add(orderInfo);
 		}
-		/*
+		
 		for(Object[] o : orderInfoCollection) {
 			System.out.println("Order" + o[0] + " " + (((Integer)o[1] == OpCodes.BUY_ORDER) ? "buy" : "sell") + " price: " + o[2] + " quantity: " + o[3]);
 		}
-		*/
+		
 		return orderInfoCollection;
 	}
 	
@@ -102,14 +104,17 @@ public class InstrumentState {
 		
 		for(Trade trade : trades.values()) {
 			Object[] tradeInfo = new Object[4];
+			tradeInfo[0] = trade.getTradeID();
+			tradeInfo[1] = (trade.getBuyer().equals(myNickname) ? OpCodes.BUY_ORDER : OpCodes.SELL_ORDER);
+			tradeInfo[2] = trade.getPrice();
 			tradeInfo[3] = trade.getQuantity();
 			tradeInfoCollection.add(tradeInfo);
 		}
-		/*
-		for(Object[] o : orderInfoCollection) {
-			System.out.println("Order" + o[0] + " " + (((Integer)o[1] == OpCodes.BUY_ORDER) ? "buy" : "sell") + " price: " + o[2] + " quantity: " + o[3]);
+		
+		for(Object[] o : tradeInfoCollection) {
+			System.out.println("Trade" + o[0] + " " + (((Integer)o[1] == OpCodes.BUY_ORDER) ? "buy" : "sell") + " price: " + o[2] + " quantity: " + o[3]);
 		}
-		*/
+		
 		return tradeInfoCollection;
 	}
 	
