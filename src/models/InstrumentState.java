@@ -96,6 +96,23 @@ public class InstrumentState {
 		return orderInfoCollection;
 	}
 	
+	public ArrayList<Object[]> getTrades() {
+		
+		ArrayList<Object[]> tradeInfoCollection = new ArrayList<Object[]>();
+		
+		for(Trade trade : trades.values()) {
+			Object[] tradeInfo = new Object[4];
+			tradeInfo[3] = trade.getQuantity();
+			tradeInfoCollection.add(tradeInfo);
+		}
+		/*
+		for(Object[] o : orderInfoCollection) {
+			System.out.println("Order" + o[0] + " " + (((Integer)o[1] == OpCodes.BUY_ORDER) ? "buy" : "sell") + " price: " + o[2] + " quantity: " + o[3]);
+		}
+		*/
+		return tradeInfoCollection;
+	}
+	
 	public String getInstrumentName() {
 		return myInstrument;
 	}

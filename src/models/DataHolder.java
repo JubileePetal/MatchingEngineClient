@@ -48,7 +48,7 @@ public class DataHolder extends Observable {
 		InstrumentState instrumentState = 
 				instrumentStates.get(instrumentName);
 		instrumentState.addOrder(order);
-
+		update(instrumentState);
 		
 	}
 
@@ -57,6 +57,7 @@ public class DataHolder extends Observable {
 		String instrumentName = trade.getInstrument().getName();
 		InstrumentState instrumentState = instrumentStates.get(instrumentName);
 		instrumentState.addTrade(trade);
+		update(instrumentState);
 	}
 
 	public String getNickName() {

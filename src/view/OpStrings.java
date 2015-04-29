@@ -13,7 +13,7 @@ public class OpStrings {
 	
 	
 	/*Column names*/
-	public static final String [] ORDER_COLS	 = {"ID","Quantity", "Price", "Buy/Sell",};
+	public static final String [] ORDER_COLS	 = {"ID","Buy/Sell", "Price", "Quantity",};
 	public static final String [] MD_COLS	 	 = {"Top Buy", "Top Sell", "Something"};
 	public static final String [] HIST_COLS		 = {"Quantitiy", "Price", "Bought/Sold"};
 	
