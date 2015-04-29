@@ -5,9 +5,11 @@ import java.util.HashMap;
 
 public class InstrumentState {
 
+	//ArrayList<Trade> trades;
 	//ArrayList<Order> orders;
 	HashMap<Long, Order> orders;
-	ArrayList<Trade> trades;
+	HashMap<Long, Trade> trades;
+
 	private String myNickname;
 	private String myInstrument;
 	
@@ -16,7 +18,8 @@ public class InstrumentState {
 		myInstrument = instrumentName;
 		myNickname = nickname;
 		orders = new HashMap<Long,Order>();
-		trades = new ArrayList<Trade>();
+		trades = new HashMap<Long,Trade>();
+		//trades = new ArrayList<Trade>();
 	}
 
 	public void addOrder(Order order) {
@@ -26,25 +29,20 @@ public class InstrumentState {
 		}
 		
 		System.out.println("Put order id: " + id + " in list.");
-		
 	}
 
 	public void addTrade(Trade trade) {
-		synchronized(trades) {
-			trades.add(trade);
-		}
 		
 		int tradedQuantity = trade.getQuantity();		
-
-		if(trade.getBuyer() == myNickname && trade.getSeller() == myNickname) {
-			long buyID = trade.getBuyOrderID();
-			updateOrder(buyID, tradedQuantity);
-			System.out.println("buy id: " + buyID);
-			long sellID = trade.getSelOrderID();
-			updateOrder(sellID, tradedQuantity);
-			System.out.println("sell id: " + sellID);
-			
-		} else if(trade.getBuyer() == myNickname) {
+		
+		if(trade.getBuyer().equals(myNickname) && trade.getSeller().equals(myNickname)) {
+			if(trades.get(trade.getTradeID()) == null) {
+				long buyID = trade.getBuyOrderID();
+				updateOrder(buyID, tradedQuantity);
+				long sellID = trade.getSelOrderID();
+				updateOrder(sellID, tradedQuantity);
+			}			
+		} else if(trade.getBuyer().equals(myNickname)) {
 			long buyID = trade.getBuyOrderID();
 			updateOrder(buyID, tradedQuantity);
 
@@ -52,9 +50,9 @@ public class InstrumentState {
 			long sellID = trade.getSelOrderID();
 			updateOrder(sellID, tradedQuantity);
 		}
-		
-		System.out.println("trade made! buyer: " + trade.getBuyer() + " seller: " + trade.getSeller() + " quantity: " + trade.getQuantity() + " price: " + trade.getPrice());
-		
+		synchronized(trades) {
+			trades.put(trade.getTradeID(), trade);
+		}		
 	}
 
 	
@@ -76,6 +74,26 @@ public class InstrumentState {
 			}
 			
 		}
+	}
+	
+	public ArrayList<Object[]> getOrders() {
+		
+		ArrayList<Object[]> orderInfoCollection = new ArrayList<Object[]>();
+		
+		for(Order order : orders.values()) {
+			Object[] orderInfo = new Object[4];
+			orderInfo[0] = order.getId();
+			orderInfo[1] = order.isBuyOrSell();
+			orderInfo[2] = order.getPrice();
+			orderInfo[3] = order.getQuantity();
+			orderInfoCollection.add(orderInfo);
+		}
+		/*
+		for(Object[] o : orderInfoCollection) {
+			System.out.println("Order" + o[0] + " " + (((Integer)o[1] == OpCodes.BUY_ORDER) ? "buy" : "sell") + " price: " + o[2] + " quantity: " + o[3]);
+		}
+		*/
+		return orderInfoCollection;
 	}
 	
 	public String getInstrumentName() {
