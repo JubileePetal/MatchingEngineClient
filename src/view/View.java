@@ -61,11 +61,6 @@ public class View extends JPanel {
 		
 		JTableHeader header = table.getTableHeader();
 		
-
-
-				
-
-		
 		panel.add(header, BorderLayout.NORTH);
 		panel.add(table, BorderLayout.CENTER);
 		
@@ -85,9 +80,9 @@ public class View extends JPanel {
 			
 			model.setColumnIdentifiers(OpStrings.ORDER_COLS);
 			JPanel ordersPanel = new JPanel();
-			//ordersPanel.setBackground(Color.BLACK);
-			JButton testButton = new JButton("Bananaaa");
-			ordersPanel.add(testButton);
+	
+			//JButton testButton = new JButton("Bananaaa");
+			ordersPanel.add(ButtonHolder.NEW_ORDER_BUTTON);
 			
 			titlePanel.add(ordersPanel, BorderLayout.EAST);
 			
@@ -98,9 +93,9 @@ public class View extends JPanel {
 			
 		}
 		
-		if(myName == OpStrings.HISTORY){
+		if(myName == OpStrings.TRADES){
 			
-			model.setColumnIdentifiers(OpStrings.HIST_COLS);
+			model.setColumnIdentifiers(OpStrings.TRADE_COLS);
 		}
 		
 		
@@ -112,6 +107,11 @@ public class View extends JPanel {
 
 	public void setTableData(ArrayList<Object[]> dataArray){
 
+		
+		int rows = model.getRowCount(); 
+		for(int i = rows - 1; i >=0; i--){
+		   model.removeRow(i); 
+		}
 		
 		for(Object [] dataRow: dataArray){
 			

@@ -92,7 +92,7 @@ public class InstrumentState {
 		}
 		
 		for(Object[] o : orderInfoCollection) {
-			System.out.println("Order" + o[0] + " " + (((Integer)o[1] == OpCodes.BUY_ORDER) ? "buy" : "sell") + " price: " + o[2] + " quantity: " + o[3]);
+			System.out.println("Order" + o[0] + " " + o[1] + " price: " + o[2] + " quantity: " + o[3]);
 		}
 		
 		return orderInfoCollection;
@@ -112,7 +112,7 @@ public class InstrumentState {
 		}
 		
 		for(Object[] o : tradeInfoCollection) {
-			System.out.println("Trade" + o[0] + " " + (((Integer)o[1] == OpCodes.BUY_ORDER) ? "buy" : "sell") + " price: " + o[2] + " quantity: " + o[3]);
+			System.out.println("Trade" + o[0] + " " + o[1] + " price: " + o[2] + " quantity: " + o[3]);
 		}
 		
 		return tradeInfoCollection;

@@ -52,7 +52,7 @@ public class GUI implements Observer {
 	private void buildGUI(){
 		
 		views = new ArrayList<View>();							
-		View v1 = new View(OpStrings.HISTORY);
+		View v1 = new View(OpStrings.TRADES);
 		View v2 = new View(OpStrings.MD);
 		View v3 = new View(OpStrings.ORDERS);
 		
@@ -61,7 +61,7 @@ public class GUI implements Observer {
 		views.add(v3);
 		
 		TabPanel tabPanel = new TabPanel();
-		tabPanel.addTab(OpStrings.HISTORY, v1);
+		tabPanel.addTab(OpStrings.TRADES, v1);
 		tabPanel.addTab(OpStrings.MD, v2);
 		tabPanel.addTab(OpStrings.ORDERS, v3);
 

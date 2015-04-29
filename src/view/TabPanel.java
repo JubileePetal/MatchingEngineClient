@@ -71,7 +71,7 @@ public class TabPanel extends JTabbedPane {
 
 		
 		this.addTab(v1.getName(), v1.builListPane(OpStrings.ORDERS));
-		this.addTab(v2.getName(), v2.builListPane(OpStrings.HISTORY));
+		this.addTab(v2.getName(), v2.builListPane(OpStrings.TRADES));
 		this.addTab(v3.getName(), v3.builListPane(OpStrings.MD));
 		
 	}

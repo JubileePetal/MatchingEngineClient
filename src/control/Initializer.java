@@ -10,9 +10,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import view.ButtonHolder;
 import view.GUI;
 import view.LogInPanel;
-
 import models.DataHolder;
 
 import com.google.gson.Gson;
@@ -31,11 +31,13 @@ public class Initializer {
 	private GUI userInterface;
 	private DataHolder dataHolder;
 	private Updater updater;
+	private ButtonHolder buttonHolder;
 	
 	public Initializer(String host, int port) {
 		
 		System.out.println("Attempting to connect to " + host + " on port " + port);
 		socket = initializeSocket(host, port);
+	
 
 	}
 	/*
@@ -85,7 +87,9 @@ public class Initializer {
 	
 	public void initializeMVC() {
 		
-		controller = new Controller();		
+		controller = new Controller();
+		ButtonHolder buttonHolder = new ButtonHolder();
+		buttonHolder.setButtonListeners();
 		userInterface = new GUI();
 		dataHolder = new DataHolder();	
 	}
