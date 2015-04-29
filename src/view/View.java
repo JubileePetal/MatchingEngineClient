@@ -113,6 +113,11 @@ public class View extends JPanel {
 	public void setTableData(ArrayList<Object[]> dataArray){
 
 		
+		int rows = model.getRowCount(); 
+		for(int i = rows - 1; i >=0; i--){
+		   model.removeRow(i); 
+		}
+		
 		for(Object [] dataRow: dataArray){
 			
 			model.addRow(dataRow);
