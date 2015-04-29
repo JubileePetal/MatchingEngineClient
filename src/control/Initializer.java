@@ -95,7 +95,6 @@ public class Initializer {
 		buttonHolder.setButtonListeners();
 		buttonHolder.addDataHolder(dataHolder);
 		buttonHolder.addController(controller);
-
 	}
 	
 	private Socket initializeSocket(String host, int port) {

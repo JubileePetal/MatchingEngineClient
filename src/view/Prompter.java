@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import models.Instrument;
+import models.OpCodes;
 import models.Order;
 
 public class Prompter {
@@ -122,7 +124,30 @@ public class Prompter {
 		Order newOrder = new Order();
 		newOrder.setOrderQuantity(Integer.getInteger(quantityField.getText()));
 		
+		if(priceField.getText() != null){
+			
+			//Double.parseDouble(priceField.getText())
+			newOrder.setPrice(Double.parseDouble(priceField.getText()));
+			newOrder.setTypeOfOrder(OpCodes.LIMIT_ORDER);
+		}else{
+			
+			newOrder.setTypeOfOrder(OpCodes.MARKET_ORDER);
+		}
 		
+		
+		switch (typesCombo.getSelectedIndex()) {
+			case 0: newOrder.setToBuyOrder(); break;
+			case 1: newOrder.setToSellOrder(); break;
+
+		}
+		
+		/******************************************************/
+		
+		
+		
+
+		
+		/******************************************************/
 		
 		return newOrder;
 	}
