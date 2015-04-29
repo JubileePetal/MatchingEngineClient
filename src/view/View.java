@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -36,7 +37,7 @@ public class View extends JPanel {
 		JPanel panel = new JPanel(new BorderLayout());
 		
 		String[] attributes = {"Stock", "Bid", "Ask"};
-		Object[] data = {"First" ,"Second", "Third"};
+		//Object[] data = {"First" ,"Second", "Third"};
 		
 		
 		/** PROOOOOOOOOBREEEEEEEEEEEEEEEEM **/
@@ -58,7 +59,7 @@ public class View extends JPanel {
 		JTableHeader header = table.getTableHeader();
 		
 
-		setTableData(data);
+		//setTableData(data);
 				
 		for (int i = 0; i < table.getColumnCount(); i++) {
 		    TableColumn column = table.getColumnModel().getColumn(i);
@@ -110,9 +111,14 @@ public class View extends JPanel {
 	
 	}
 
-	public void setTableData(Object[] data){
+	public void setTableData(ArrayList<Object[]> dataArray){
 
-		model.addRow(data);
+		
+		for(Object [] dataRow: dataArray){
+			
+			model.addRow(dataRow);
+		}		
+
 		table.repaint();
 	}
 		
