@@ -17,4 +17,8 @@ public class OpStrings {
 	public static final String [] MD_COLS	 	 = {"Top Buy", "Top Sell", "Something"};
 	public static final String [] TRADE_COLS	 = {"ID","Buy/Sell", "Price", "Quantity"};
 	
+	
+	/*Other*/
+	public static final String BUY	 = "Buy";
+	public static final String SELL	 = "Sell";
 }
