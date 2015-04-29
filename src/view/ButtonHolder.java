@@ -41,10 +41,10 @@ public class ButtonHolder {
 					//return result == JOptionPane.OK_OPTION ? true : false;
 				
 				if(result == JOptionPane.OK_OPTION) {
-					
+					System.out.println("GETTING ORDER!");
 					Order order = prompter.getNewOrderInfo();	
 					order.setOrderOwner(dataHolder.getNickName());
-					order.setInstrument(dataHolder.getInstrument("ERICSSON A"));
+					order.setInstrument(dataHolder.getInstrument("Ericsson B"));
 					controller.sendOrder(order);
 				}
 				
