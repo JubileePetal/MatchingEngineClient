@@ -122,7 +122,7 @@ public class Prompter {
 	public Order getNewOrderInfo(){
 		
 		Order newOrder = new Order();
-		newOrder.setOrderQuantity(Integer.getInteger(quantityField.getText()));
+		newOrder.setOrderQuantity(Integer.parseInt(quantityField.getText()));
 		
 		if(priceField.getText() != null){
 			
