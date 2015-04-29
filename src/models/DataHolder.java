@@ -54,6 +54,12 @@ public class DataHolder extends Observable {
 	}
 	
 	public InstrumentState getInstrumentState(String instrumentName) {
+		
+		System.out.println("got instrumentName: " + instrumentName);
+		for(String name : instrumentStates.keySet()) {
+			System.out.println("I have: " + name);
+		}
+		
 		return instrumentStates.get(instrumentName);
 	}
 

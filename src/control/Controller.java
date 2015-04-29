@@ -43,8 +43,35 @@ public class Controller {
 		order2.setOrderQuantity(40);
 		order2.setPrice(30.0);
 		
+		Order order3 = new Order();
+		order3.setToSellOrder();
+		order3.setTypeOfOrder(OpCodes.LIMIT_ORDER);
+		order3.setInstrument(instrument);
+		order3.setOrderOwner("Linda");
+		order3.setOrderQuantity(300);
+		order3.setPrice(40.0);
+		
+		Order order4 = new Order();
+		order4.setToBuyOrder();
+		order4.setTypeOfOrder(OpCodes.LIMIT_ORDER);
+		order4.setInstrument(instrument);
+		order4.setOrderOwner("Linda");
+		order4.setOrderQuantity(20);
+		order4.setPrice(20.0);
+		
+		Order order5 = new Order();
+		order5.setToBuyOrder();
+		order5.setTypeOfOrder(OpCodes.LIMIT_ORDER);
+		order5.setInstrument(instrument);
+		order5.setOrderOwner("Linda");
+		order5.setOrderQuantity(10);
+		order5.setPrice(25.0);
+		
 		sender.sendOrder(order);
 		sender.sendOrder(order2);
+		sender.sendOrder(order3);
+		sender.sendOrder(order4);
+		sender.sendOrder(order5);
 		
 	}
 	
