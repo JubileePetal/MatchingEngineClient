@@ -7,10 +7,21 @@ import javax.swing.border.TitledBorder;
 
 public class TitledPanel extends JPanel {
 
-	public TitledPanel(String title) {
+	private TitledBorder titledBorder;
 	
-		this.setBorder(new TitledBorder(title));
+	public TitledPanel() {
+	
+		titledBorder = new TitledBorder("Init");
+		
+		this.setBorder(titledBorder);
 		this.setLayout(new BorderLayout());
 	}
+
+	public void setTitle(String title){
+		
+		titledBorder.setTitle(title);
+	}
+	
+
 
 }

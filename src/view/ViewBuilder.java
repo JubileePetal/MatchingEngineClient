@@ -38,53 +38,53 @@ public class ViewBuilder implements Observer {
 	}
 
 	public Component builListPane(String title) {
-		
-		TitledPanel titlePanel 	=  new TitledPanel(title);
-		JPanel panel = new JPanel(new BorderLayout());
-		
-		String[] attributes = {"Stock", "Bid", "Ask"};
-		Object[] data = {"First" ,"Second", "Third"};
-		
-		
-		//table = new JTable(data, attributes);
-		
-		model.setColumnIdentifiers(attributes);
-		
-		table.setFont(new Font("Serif", Font.ITALIC, 14));
-	
-		table.setRowHeight(25);
-		
-		table.setShowGrid(false);
-		table.setIntercellSpacing(new Dimension(0, 0));
-		
-		table.setEnabled(false);
-		
-		JTableHeader header = table.getTableHeader();
-		
-		//tablemodel = table.getModel();
-		setTableData(data);
-				
-		for (int i = 0; i < table.getColumnCount(); i++) {
-		    TableColumn column = table.getColumnModel().getColumn(i);
-		    column.setCellRenderer(new FilterRenderer());
-		    column.setMinWidth(100);
-		}
-		
-		panel.add(header, BorderLayout.NORTH);
-		panel.add(table, BorderLayout.CENTER);
-		
-
-
-		JScrollPane scroll = new JScrollPane(panel);
-		
-		
-		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-			
-		
-		titlePanel.add(scroll);
-		return titlePanel;
-		
+//		
+//		//TitledPanel titlePanel 	=  new TitledPanel(title);
+//		JPanel panel = new JPanel(new BorderLayout());
+//		
+//		String[] attributes = {"Stock", "Bid", "Ask"};
+//		Object[] data = {"First" ,"Second", "Third"};
+//		
+//		
+//		//table = new JTable(data, attributes);
+//		
+//		model.setColumnIdentifiers(attributes);
+//		
+//		table.setFont(new Font("Serif", Font.ITALIC, 14));
+//	
+//		table.setRowHeight(25);
+//		
+//		table.setShowGrid(false);
+//		table.setIntercellSpacing(new Dimension(0, 0));
+//		
+//		table.setEnabled(false);
+//		
+//		JTableHeader header = table.getTableHeader();
+//		
+//		//tablemodel = table.getModel();
+//		setTableData(data);
+//				
+//		for (int i = 0; i < table.getColumnCount(); i++) {
+//		    TableColumn column = table.getColumnModel().getColumn(i);
+//		    column.setCellRenderer(new FilterRenderer());
+//		    column.setMinWidth(100);
+//		}
+//		
+//		panel.add(header, BorderLayout.NORTH);
+//		panel.add(table, BorderLayout.CENTER);
+//		
+//
+//
+//		JScrollPane scroll = new JScrollPane(panel);
+//		
+//		
+//		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+//		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+//			
+//		
+//		titlePanel.add(scroll);
+//		return titlePanel;
+		return null;
 		
 	}	
 

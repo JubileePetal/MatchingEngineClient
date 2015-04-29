@@ -11,6 +11,7 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import models.DataHolder;
+import models.InstrumentState;
 import models.OpCodes;
 import view.OpStrings;
 import view.TreeList;
@@ -23,9 +24,11 @@ public class Updater implements Observer{
 	private TreeList treeList;
 	private DataHolder dataHolder;
 	private JFrame lordFrame; 
+	private String currentInstrument;
 	
 	public Updater() {
-		// TODO Auto-generated constructor stub
+		
+		currentInstrument = OpStrings.STOCK;
 	}
 
 	public void setViews(ArrayList<View> views) {
@@ -84,7 +87,7 @@ public class Updater implements Observer{
 		    /* retrieve the node that was selected */ 
 		        Object nodeInfo = node.getUserObject();
 		        System.out.println(nodeInfo.toString() + " in updater!");
-		        updateView();
+		        updateView(nodeInfo.toString());
 		    }
 		});
 
@@ -94,15 +97,18 @@ public class Updater implements Observer{
 		this.dataHolder = dataHolder;
 	}
 
-	private void updateView(){
+	private void updateView(String instrumentName){
 		
+		setCurrentInstrument(instrumentName);
 		
 		for(View v: views){
 			
-			System.out.println(v.getMyName() + " is the name I got.");
+			
+			v.setTitledBorder(instrumentName);
+			//System.out.println(v.getMyName() + " is the name I got.");
 			if(v.getMyName() == OpStrings.ORDERS){
 				
-				System.out.println("ANNAAAAAA");
+				
 				Object[] data = {"Anna" ,"är", "söt."};
 				v.setTableData(data);
 				
@@ -110,16 +116,33 @@ public class Updater implements Observer{
 		}
 		
 	}
+	
+	public void setCurrentInstrument(String currentInstrument) {
+		this.currentInstrument = currentInstrument;
+	}
+	
+	
 
-	
-	
 	@Override
 	public void update(Observable observed, Object objectChanged) {
 		
 		DataHolder dataHolder = (DataHolder)observed;
 		
 		if(lordFrame.isVisible()) {
-			// lotsa derp
+			
+			
+			InstrumentState is = (InstrumentState)objectChanged;
+			
+			
+			
+			if(is.getInstrumentName() == currentInstrument){
+				
+				ArrayList<Object[]> testList = new ArrayList<Object []>(); 
+				
+			}
+			
+			
+			
 		} else {
 			
 			

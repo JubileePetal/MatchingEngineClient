@@ -18,7 +18,7 @@ public class ViewPanel extends JPanel {
 	
 	private void addTitledPanel(String title){
 		
-		TitledPanel panel 	=  new TitledPanel(title);
+		TitledPanel panel 	=  new TitledPanel();
 //		TitledPanel secondPanel =  new TitledPanel(OpStrings.MD);
 //		TitledPanel thirdPanel 	=  new TitledPanel(OpStrings.ORDERS);
 //		
