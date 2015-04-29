@@ -88,10 +88,11 @@ public class Initializer {
 	public void initializeMVC() {
 		
 		controller = new Controller();
+		userInterface = new GUI();
+		dataHolder = new DataHolder();
+		
 		ButtonHolder buttonHolder = new ButtonHolder();
 		buttonHolder.setButtonListeners();
-		userInterface = new GUI();
-		dataHolder = new DataHolder();	
 	}
 	
 	private Socket initializeSocket(String host, int port) {

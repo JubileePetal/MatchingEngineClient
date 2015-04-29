@@ -25,6 +25,9 @@ public class Prompter {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	JTextField quantityField;
+	
 	public JPanel newOrderPrompt() {
 
 		
@@ -48,7 +51,7 @@ public class Prompter {
 		/**Quantity panel*/
 		
 		JPanel quantityPanel = new JPanel();
-		JTextField quantityField = new JTextField(7);
+		quantityField = new JTextField(7);
 		quantityPanel.add(new JLabel("Quantity"));
 		quantityPanel.add(quantityField);
 
@@ -108,7 +111,12 @@ public class Prompter {
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 //        frame.setVisible(true); 
     } 
+	
+	public void getNewOrderInfo(){
 		
+		
+		
+	}
 }
 
 
