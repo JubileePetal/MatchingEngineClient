@@ -13,6 +13,7 @@ public class MainClient {
 		initializer.initializeMVC();
 		initializer.establishDependencies();
 		
+		
 		initializer.startListeningToServer();
 		
 		//initializer.promptUserToLogin();

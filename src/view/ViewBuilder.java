@@ -135,7 +135,7 @@ public class ViewBuilder implements Observer {
 			setTableData(testData);
 		}
 		
-		if(myName == OpStrings.HISTORY){
+		if(myName == OpStrings.TRADES){
 			
 			//get History from chosen instrument and put in list
 			System.out.println("Im history...");

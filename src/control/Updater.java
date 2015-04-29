@@ -108,36 +108,31 @@ public class Updater implements Observer{
 			
 			
 			v.setTitledBorder(instrumentName);
-			//System.out.println(v.getMyName() + " is the name I got.");
-			if(v.getMyName() == OpStrings.ORDERS && 
-					!(instrumentName.equals(OpStrings.STOCK))){
+			
+			/*Stock is just the root of the tree, not relevant*/
+			if(!instrumentName.equals(OpStrings.STOCK)){
 				
-//				ArrayList<Object[]> testList = new ArrayList<Object []>();
-//				
-//				Object [] o1 = {"3333", "13", "66", "Sell"};
-//				Object [] o2 = {"4444", "144", "8", "Buy"};
-//				Object [] o3 = {"6666", "10", "90", "Sell"};
-//				Object [] o4 = {"222", "123", "63", "Buy"};
-//				
-//				testList.add(o1);
-//				testList.add(o2);
-//				testList.add(o3);
-//				testList.add(o4);
-//			
-//						
-//				System.out.println("HERE I SET THE DATA");
-//				v.setTableData(testList);
 				
-				System.out.println("Instrument name:" + instrumentName);
 				InstrumentState is = dataHolder.getInstrumentState(instrumentName);
 				
+				if(v.getMyName().equals(OpStrings.ORDERS)){			
+					System.out.println("Instrument name:" + instrumentName);
 
+		
+					v.setTableData(is.getOrders());
+				}
 				
-				v.setTableData(is.getOrders());
+				if(v.getMyName().equals(OpStrings.TRADES) ){
+					
+					v.setTableData(is.getTrades());
+					
+				}
+			
+
 						
 					
 				
-				//v.setTableData(data);
+
 				
 			}
 		}
