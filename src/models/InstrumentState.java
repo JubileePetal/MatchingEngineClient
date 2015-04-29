@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import models.BookStatus;
 
 public class InstrumentState {
 

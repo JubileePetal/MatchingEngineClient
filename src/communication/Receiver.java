@@ -18,6 +18,8 @@ import com.google.gson.Gson;
 
 import control.Controller;
 
+import control.Controller;
+
 public class Receiver implements Runnable {
 
 	public Controller controller; 
