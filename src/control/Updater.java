@@ -58,6 +58,7 @@ public class Updater implements Observer{
 //			System.out.println("Value: " + s);
 //			
 //		}
+		
 		ArrayList<String> instrumentData = dataHolder.getInstrumentNames();
 		String[] instruments = new String[instrumentData.size()];
 		
@@ -71,6 +72,8 @@ public class Updater implements Observer{
 		
 		
 		treeList.buildTreeNodes(instruments);
+		
+		
 		
 	}
 	
@@ -108,8 +111,34 @@ public class Updater implements Observer{
 			//System.out.println(v.getMyName() + " is the name I got.");
 			if(v.getMyName() == OpStrings.ORDERS){
 				
+//				ArrayList<Object[]> testList = new ArrayList<Object []>();
+//				
+//				Object [] o1 = {"3333", "13", "66", "Sell"};
+//				Object [] o2 = {"4444", "144", "8", "Buy"};
+//				Object [] o3 = {"6666", "10", "90", "Sell"};
+//				Object [] o4 = {"222", "123", "63", "Buy"};
+//				
+//				testList.add(o1);
+//				testList.add(o2);
+//				testList.add(o3);
+//				testList.add(o4);
+//			
+//						
+//				System.out.println("HERE I SET THE DATA");
+//				v.setTableData(testList);
 				
-				Object[] data = {"Anna" ,"är", "söt."};
+				System.out.println("Instrument name:" + instrumentName);
+				InstrumentState is = dataHolder.getInstrumentState(instrumentName);
+				
+				if(is == null){
+					
+					System.out.println("Its nULL ;YDF");
+				}
+				
+				//v.setTableData(is.getOrders());
+						
+					
+				
 				//v.setTableData(data);
 				
 			}
@@ -126,6 +155,9 @@ public class Updater implements Observer{
 	@Override
 	public void update(Observable observed, Object objectChanged) {
 		
+		
+	
+		
 		DataHolder dataHolder = (DataHolder)observed;
 		
 		if(lordFrame.isVisible()) {
@@ -135,8 +167,9 @@ public class Updater implements Observer{
 			
 			
 			
-			if(is.getInstrumentName() == currentInstrument){
+			if(is.getInstrumentName().equals(currentInstrument)){
 				
+				System.out.println("UPDAAAAAAATE");
 				ArrayList<Object[]> testList = new ArrayList<Object []>();
 				
 				Object [] o1 = {"3333", "13", "66", "Sell"};
@@ -154,7 +187,8 @@ public class Updater implements Observer{
 					
 					if(v.getMyName() == OpStrings.ORDERS){
 						
-						v.setTableData(testList);
+						System.out.println("HERE I SET THE DATA");
+						//v.setTableData(testList);
 						
 					}
 					

@@ -54,18 +54,17 @@ public class View extends JPanel {
 		table.setShowGrid(false);
 		table.setIntercellSpacing(new Dimension(0, 0));
 		
+		
+
+		
 		table.setEnabled(false);
 		
 		JTableHeader header = table.getTableHeader();
 		
 
-		//setTableData(data);
+
 				
-		for (int i = 0; i < table.getColumnCount(); i++) {
-		    TableColumn column = table.getColumnModel().getColumn(i);
-		    column.setCellRenderer(new FilterRenderer());
-		    column.setMinWidth(100);
-		}
+
 		
 		panel.add(header, BorderLayout.NORTH);
 		panel.add(table, BorderLayout.CENTER);
@@ -117,9 +116,18 @@ public class View extends JPanel {
 		for(Object [] dataRow: dataArray){
 			
 			model.addRow(dataRow);
+			
 		}		
+		
+		
+		for (int i = 0; i < table.getColumnCount(); i++) {
+		    TableColumn column = table.getColumnModel().getColumn(i);
+		    column.setCellRenderer(new FilterRenderer());
+		    column.setMinWidth(100);
+		}
 
 		table.repaint();
+
 	}
 		
 	public String getMyName() {
