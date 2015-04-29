@@ -26,6 +26,7 @@ public class DataHolder extends Observable {
 		
 		for(Instrument instrument : instruments) {
 			String name = instrument.getName();
+			System.out.println(name);
 			instrumentStates.put(name, new InstrumentState(myNickname, name));
 		}
 		
