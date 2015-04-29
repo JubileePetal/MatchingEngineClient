@@ -7,26 +7,26 @@ import java.util.Observable;
 public class DataHolder extends Observable {
 	
 	private HashMap<String, InstrumentState> instrumentStates;
-	String myUserName;
+	String myNickname;
 	
 	public DataHolder() {
 		instrumentStates = new HashMap<String, InstrumentState>();
 	}
 	
-	private void update() {
+	private void update(InstrumentState instrumentState) {
 		setChanged();
-		notifyObservers(this);
+		notifyObservers(instrumentState);
 	}
 	
 	public void loggedIn() {
-		update();
+		update(null);
 	}
 
 	public void setInstruments(Instrument[] instruments) {
 		
 		for(Instrument instrument : instruments) {
 			String name = instrument.getName();
-			instrumentStates.put(name, new InstrumentState());
+			instrumentStates.put(name, new InstrumentState(myNickname, name));
 		}
 		
 	}
@@ -54,11 +54,17 @@ public class DataHolder extends Observable {
 
 	public void addTrade(Trade trade) {
 		
-		
+		String instrumentName = trade.getInstrument().getName();
+		InstrumentState instrumentState = instrumentStates.get(instrumentName);
+		instrumentState.addTrade(trade);
 	}
 
+	public String getNickName() {
+		return myNickname;
+	}
+	
 	public void setNickName(String nick) {
-		this.myUserName = nick;
+		this.myNickname = nick;
 		
 	}
 }
