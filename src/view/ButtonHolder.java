@@ -41,9 +41,11 @@ public class ButtonHolder {
 					//return result == JOptionPane.OK_OPTION ? true : false;
 				
 				if(result == JOptionPane.OK_OPTION) {
-					dataHolder.getNickName();
 					
-					controller.sendOrder(new Order());
+					Order order = prompter.getNewOrderInfo();	
+					order.setOrderOwner(dataHolder.getNickName());
+					order.setInstrument(dataHolder.getInstrument("ERICSSON A"));
+					controller.sendOrder(order);
 				}
 				
 			}

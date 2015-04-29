@@ -8,10 +8,13 @@ import models.BookStatus;
 public class DataHolder extends Observable {
 	
 	private HashMap<String, InstrumentState> instrumentStates;
+	private HashMap<String, Instrument> trueInstruments;
 	String myNickname;
+	
 	
 	public DataHolder() {
 		instrumentStates = new HashMap<String, InstrumentState>();
+		trueInstruments = new HashMap<String, Instrument>();
 	}	
 	
 	private void update(InstrumentState instrumentState) {
@@ -29,8 +32,13 @@ public class DataHolder extends Observable {
 			String name = instrument.getName();
 			System.out.println(name);
 			instrumentStates.put(name, new InstrumentState(myNickname, name));
+			trueInstruments.put(name, instrument);
 		}
 		
+	}
+	
+	public Instrument getInstrument(String name) {
+		return trueInstruments.get(name);
 	}
 	
 	public ArrayList<String> getInstrumentNames() {
