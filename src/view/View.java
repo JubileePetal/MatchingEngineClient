@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,6 +22,7 @@ public class View extends JPanel {
 	private JTable table;
 	private String myName;
 	private DefaultTableModel model;
+	private TitledPanel titlePanel;
 	
 	public View(String name) {
 
@@ -29,16 +31,20 @@ public class View extends JPanel {
 		table = new JTable();
 		model = (DefaultTableModel) table.getModel();
 		
-		TitledPanel titlePanel 	=  new TitledPanel("Laters");
+		titlePanel 	=  new TitledPanel();
+		titlePanel.setLayout(new BorderLayout());
 		JPanel panel = new JPanel(new BorderLayout());
 		
 		String[] attributes = {"Stock", "Bid", "Ask"};
 		Object[] data = {"First" ,"Second", "Third"};
 		
 		
-		//table = new JTable(data, attributes);
+		/** PROOOOOOOOOBREEEEEEEEEEEEEEEEM **/
 		
-		model.setColumnIdentifiers(attributes);
+		//model.setColumnIdentifiers(attributes);
+		
+		/*************************************/
+		
 		
 		table.setFont(new Font("Serif", Font.ITALIC, 14));
 	
@@ -51,7 +57,7 @@ public class View extends JPanel {
 		
 		JTableHeader header = table.getTableHeader();
 		
-		//tablemodel = table.getModel();
+
 		setTableData(data);
 				
 		for (int i = 0; i < table.getColumnCount(); i++) {
@@ -72,9 +78,34 @@ public class View extends JPanel {
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 			
 		
-		titlePanel.add(scroll);
-		this.add(titlePanel, BorderLayout.CENTER);
+		titlePanel.add(scroll, BorderLayout.CENTER);
 		
+		if(myName == OpStrings.ORDERS){
+			
+			
+			model.setColumnIdentifiers(OpStrings.ORDER_COLS);
+			JPanel ordersPanel = new JPanel();
+			//ordersPanel.setBackground(Color.BLACK);
+			JButton testButton = new JButton("Bananaaa");
+			ordersPanel.add(testButton);
+			
+			titlePanel.add(ordersPanel, BorderLayout.EAST);
+			
+		}
+		
+		if(myName == OpStrings.MD){
+			model.setColumnIdentifiers(OpStrings.MD_COLS);
+			
+		}
+		
+		if(myName == OpStrings.HISTORY){
+			
+			model.setColumnIdentifiers(OpStrings.HIST_COLS);
+		}
+		
+		
+		this.add(titlePanel, BorderLayout.CENTER);
+
 	
 	
 	}
@@ -84,14 +115,16 @@ public class View extends JPanel {
 		model.addRow(data);
 		table.repaint();
 	}
-	
-	
-	
+		
 	public String getMyName() {
 		return myName;
 	}
 
-
+	public void  setTitledBorder(String title){
+		
+		titlePanel.setTitle(title);
+		titlePanel.repaint();
+	}
 
 	public class FilterRenderer extends DefaultTableCellRenderer {
 	    @Override
