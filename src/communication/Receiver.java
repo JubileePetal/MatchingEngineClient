@@ -57,7 +57,9 @@ public class Receiver implements Runnable {
 			case OpCodes.ORDER_ADDED: orderAdded(message.getJson());
 										break;
 			case OpCodes.TRADE: tradeMade(message.getJson());
-
+								break;
+			case OpCodes.MARKET_DATA: System.out.println(message.getJson());
+										break;
 		}
 	}
 	

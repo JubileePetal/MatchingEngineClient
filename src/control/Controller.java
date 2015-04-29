@@ -67,11 +67,20 @@ public class Controller {
 		order5.setOrderQuantity(10);
 		order5.setPrice(25.0);
 		
+		Order order6 = new Order();
+		order6.setToBuyOrder();
+		order6.setTypeOfOrder(OpCodes.LIMIT_ORDER);
+		order6.setInstrument(instrument);
+		order6.setOrderOwner("Linda");
+		order6.setOrderQuantity(20);
+		order6.setPrice(25.0);
+		
 		sender.sendOrder(order);
 		sender.sendOrder(order2);
 		sender.sendOrder(order3);
 		sender.sendOrder(order4);
 		sender.sendOrder(order5);
+		sender.sendOrder(order6);
 		
 	}
 	
