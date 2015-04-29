@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import models.Order;
+
 public class Prompter {
 
 	public Prompter() {
@@ -27,6 +29,9 @@ public class Prompter {
 
 	
 	JTextField quantityField;
+	JComboBox typesCombo;
+	JTextField priceField;
+	
 	
 	public JPanel newOrderPrompt() {
 
@@ -42,7 +47,7 @@ public class Prompter {
 		
 		JPanel typePanel = new JPanel(new BorderLayout());
 		String[] types = {OpStrings.BUY, OpStrings.SELL};
-		JComboBox typesCombo = new JComboBox(types);
+		typesCombo = new JComboBox(types);
 		
 		typePanel.add(new JLabel("Buy/Sell"), BorderLayout.WEST);
 		typePanel.add(typesCombo);
@@ -76,7 +81,7 @@ public class Prompter {
         final JPanel pricePanel = new JPanel(); 
         pricePanel.add(new JLabel("Price: "));
         
-        JTextField priceField = new JTextField(7);
+        priceField = new JTextField(7);
         pricePanel.add(priceField); 
         final JCheckBox checkBox = new JCheckBox("Limit Order", true); 
         checkBox.setFocusPainted(false); 
@@ -112,10 +117,14 @@ public class Prompter {
 //        frame.setVisible(true); 
     } 
 	
-	public void getNewOrderInfo(){
+	public Order getNewOrderInfo(){
+		
+		Order newOrder = new Order();
+		newOrder.setOrderQuantity(Integer.getInteger(quantityField.getText()));
 		
 		
 		
+		return newOrder;
 	}
 }
 
