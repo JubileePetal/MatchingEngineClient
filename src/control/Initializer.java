@@ -88,11 +88,21 @@ public class Initializer {
 	public void initializeMVC() {
 		
 		controller = new Controller();
+
+
+		userInterface = new GUI();
+		dataHolder = new DataHolder();	
+		ButtonHolder buttonHolder = new ButtonHolder();
+		buttonHolder.setButtonListeners();
+		buttonHolder.addDataHolder(dataHolder);
+		buttonHolder.addController(controller);
+
 		userInterface = new GUI();
 		dataHolder = new DataHolder();
 		
-		ButtonHolder buttonHolder = new ButtonHolder();
+		buttonHolder = new ButtonHolder();
 		buttonHolder.setButtonListeners();
+
 	}
 	
 	private Socket initializeSocket(String host, int port) {
@@ -152,7 +162,7 @@ public class Initializer {
 		}
 
 		controller.attemptLogIn(nick, userType);
-		controller.sendOrder(); // TODO REMOVE THIS SHIZ
+		//controller.sendOrder(); // TODO REMOVE THIS SHIZ
 		dataHolder.setNickName(nick);
 	
 	}

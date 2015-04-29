@@ -83,6 +83,10 @@ public class Controller {
 		sender.sendOrder(order6);
 		
 	}
+
+	public void sendOrder(Order order) {
+		sender.sendOrder(order);
+	}
 	
 	public void addDataHolder(DataHolder dataHolder) {
 		this.dataHolder = dataHolder;
@@ -100,4 +104,6 @@ public class Controller {
 			/* another log in prompt?!*/
 		}
 	}
+
+
 }

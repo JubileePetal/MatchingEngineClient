@@ -6,10 +6,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import control.Controller;
+
+import models.DataHolder;
+import models.Order;
+
 public class ButtonHolder {
 	/*BUTTONS*/
 	public static final JButton NEW_ORDER_BUTTON = new JButton("New Order");
 
+	private Controller controller;
+	private DataHolder dataHolder;
 	
 	/*OTHER*/
 	Prompter prompter;
@@ -33,9 +40,26 @@ public class ButtonHolder {
 						"Enter new order info", JOptionPane.OK_CANCEL_OPTION);
 					//return result == JOptionPane.OK_OPTION ? true : false;
 				
+				if(result == JOptionPane.OK_OPTION) {
+					dataHolder.getNickName();
+					
+					controller.sendOrder(new Order());
+				}
 				
 			}
 		});
+		
+	}
+
+
+	public void addDataHolder(DataHolder dataHolder) {
+		this.dataHolder = dataHolder;
+		
+	}
+
+
+	public void addController(Controller controller) {
+		this.controller = controller;
 		
 	}
 }
