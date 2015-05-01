@@ -66,7 +66,7 @@ public class Updater implements Observer{
 
 		
 		for (int i = 0; i < instrumentData.size(); i++) {
-			//System.out.println("name: " + instrumentData.get(i));
+			System.out.println("name: " + instrumentData.get(i));
 			instruments[i] = instrumentData.get(i);
 		}
 		
@@ -90,7 +90,7 @@ public class Updater implements Observer{
 
 		    /* retrieve the node that was selected */ 
 		        Object nodeInfo = node.getUserObject();
-		        //System.out.println(nodeInfo.toString() + " in updater!");
+		        System.out.println(nodeInfo.toString() + " in updater!");
 		        updateView(nodeInfo.toString());
 		    }
 		});
@@ -117,7 +117,7 @@ public class Updater implements Observer{
 				InstrumentState is = dataHolder.getInstrumentState(instrumentName);
 				
 				if(v.getMyName().equals(OpStrings.ORDERS)){			
-					//System.out.println("Instrument name:" + instrumentName);
+					System.out.println("Instrument name:" + instrumentName);
 
 		
 					v.setTableData(is.getOrders());
@@ -155,7 +155,7 @@ public class Updater implements Observer{
 	@Override
 	public void update(Observable observed, Object objectChanged) {
 		
-		//System.out.println("------------ Trying to update --------");
+		System.out.println("------------ Trying to update --------");
 	
 		
 		DataHolder dataHolder = (DataHolder)observed;

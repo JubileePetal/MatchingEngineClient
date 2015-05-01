@@ -35,13 +35,13 @@ public class ButtonHolder {
 
 			public void actionPerformed(ActionEvent e) {
 				
-				//System.out.println("NEW ORDER BUTTON PRESSED!");
+				System.out.println("NEW ORDER BUTTON PRESSED!");
 				int result = JOptionPane.showConfirmDialog(null,  prompter.newOrderPrompt(),
 						"Enter new order info", JOptionPane.OK_CANCEL_OPTION);
 					//return result == JOptionPane.OK_OPTION ? true : false;
 				
 				if(result == JOptionPane.OK_OPTION) {
-					//System.out.println("GETTING ORDER!");
+					System.out.println("GETTING ORDER!");
 					Order order = prompter.getNewOrderInfo();	
 					order.setOrderOwner(dataHolder.getNickName());
 					order.setInstrument(dataHolder.getInstrument("Ericsson B"));
