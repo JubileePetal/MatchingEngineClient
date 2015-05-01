@@ -8,7 +8,8 @@ public class InstrumentState {
 
 	BookStatus marketData;
 	HashMap<Long, Order> orders;
-	HashMap<Long, Trade> trades;
+	ArrayList<Trade> trades;
+	//HashMap<Long, Trade> trades;
 
 	private String myNickname;
 	private String myInstrument;
@@ -18,7 +19,8 @@ public class InstrumentState {
 		myInstrument = instrumentName;
 		myNickname = nickname;
 		orders = new HashMap<Long,Order>();
-		trades = new HashMap<Long,Trade>();
+		//trades = new HashMap<Long,Trade>();
+		trades = new ArrayList<Trade>();
 
 	}
 
@@ -28,7 +30,7 @@ public class InstrumentState {
 			orders.put(id, order);
 		}
 		
-		System.out.println("Put order id: " + id + " in list.");
+		//System.out.println("Put order id: " + id + " in list.");
 		getOrders();
 	}
 
@@ -37,12 +39,12 @@ public class InstrumentState {
 		int tradedQuantity = trade.getQuantity();		
 		
 		if(trade.getBuyer().equals(myNickname) && trade.getSeller().equals(myNickname)) {
-			if(trades.get(trade.getTradeID()) == null) {
-				long buyID = trade.getBuyOrderID();
-				updateOrder(buyID, tradedQuantity);
-				long sellID = trade.getSelOrderID();
-				updateOrder(sellID, tradedQuantity);
-			}			
+
+			long buyID = trade.getBuyOrderID();
+			updateOrder(buyID, tradedQuantity);
+			long sellID = trade.getSelOrderID();
+			updateOrder(sellID, tradedQuantity);
+			
 		} else if(trade.getBuyer().equals(myNickname)) {
 			long buyID = trade.getBuyOrderID();
 			updateOrder(buyID, tradedQuantity);
@@ -52,14 +54,14 @@ public class InstrumentState {
 			updateOrder(sellID, tradedQuantity);
 		}
 		synchronized(trades) {
-			trades.put(trade.getTradeID(), trade);
+			trades.add(trade);
 		}
 		getTrades();
 	}
 
 	
 	private void updateOrder(long id, int tradedQuantity) {
-		System.out.println("Here id: " + id);
+		//System.out.println("Here id: " + id);
 		Order order = orders.get(id);
 		
 		if(order != null) {
@@ -68,10 +70,10 @@ public class InstrumentState {
 			
 			if(oldQuantity == tradedQuantity) {
 				orders.remove(id);
-				System.out.println("removed order " + id);
+				//System.out.println("removed order " + id);
 			} else {
 				order.setOrderQuantity(oldQuantity-tradedQuantity); 
-				System.out.println("new quantity for order " + id + ": " + (oldQuantity - tradedQuantity));
+				//System.out.println("new quantity for order " + id + ": " + (oldQuantity - tradedQuantity));
 
 			}
 			
@@ -92,7 +94,7 @@ public class InstrumentState {
 		}
 		
 		for(Object[] o : orderInfoCollection) {
-			System.out.println("Order" + o[0] + " " + o[1] + " price: " + o[2] + " quantity: " + o[3]);
+			//System.out.println("Order" + o[0] + " " + o[1] + " price: " + o[2] + " quantity: " + o[3]);
 		}
 		
 		return orderInfoCollection;
@@ -102,7 +104,7 @@ public class InstrumentState {
 		
 		ArrayList<Object[]> tradeInfoCollection = new ArrayList<Object[]>();
 		
-		for(Trade trade : trades.values()) {
+		for(Trade trade : trades) {
 			Object[] tradeInfo = new Object[4];
 			tradeInfo[0] = trade.getTradeID();
 			tradeInfo[1] = (trade.getBuyer().equals(myNickname) ? "Buy" : "Sell");
@@ -112,7 +114,7 @@ public class InstrumentState {
 		}
 		
 		for(Object[] o : tradeInfoCollection) {
-			System.out.println("Trade" + o[0] + " " + o[1] + " price: " + o[2] + " quantity: " + o[3]);
+			//System.out.println("Trade" + o[0] + " " + o[1] + " price: " + o[2] + " quantity: " + o[3]);
 		}
 		
 		return tradeInfoCollection;
@@ -134,32 +136,38 @@ public class InstrumentState {
 		
 		if(marketData != null) {
 			for(Level level : marketData.getBuyLevels()) {
+				System.out.println("buy price: " + level.getPrice() + " quant: " + level.getQuantity());
 				Object[] levelInfo = new Object[4];
 				levelInfo[0] = level.getQuantity();
 				levelInfo[1] = level.getPrice();
 				levelInfo[2] = "";
 				levelInfo[3] = "";
 				MD.add(levelInfo);
+				
+				
 			}
 			
 			ArrayList<Level> sellLevels = marketData.getSellLevels();
 			
 			for(int i = 0; i < marketData.getSellLevels().size(); i++) {
+				System.out.println("sell price: " + sellLevels.get(i).getPrice() + " quant: " + sellLevels.get(i).getQuantity());
 				if(MD.size() < i+1) {
 					Object[] levelInfo = new Object[4];
 					levelInfo[0] = "";
 					levelInfo[1] = "";
 					levelInfo[2] = sellLevels.get(i).getPrice();
 					levelInfo[3] = sellLevels.get(i).getQuantity();
+					MD.add(levelInfo);
 				} else {
 					MD.get(i)[2] = sellLevels.get(i).getPrice();
 					MD.get(i)[3] = sellLevels.get(i).getQuantity();
 				}
 			}
 
+			System.out.println("--------------- new MD -------------");
 			
 			for(Object[] o : MD) {
-				System.out.println("Buy price" + o[0] + " buy quant " + o[1] + " sell quant " + o[2] + " sell price " + o[3]);
+				System.out.println("Buy quant: " + o[0] + " buy price " + o[1] + " sell price " + o[2] + " sell quant " + o[3]);
 			}
 		}
 		
