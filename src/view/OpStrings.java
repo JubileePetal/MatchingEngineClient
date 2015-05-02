@@ -8,7 +8,7 @@ public class OpStrings {
 	
 	/*Tab names*/
 	public static final String TRADES	 = "Trades";
-	public static final String ORDERS 	 = "Orders";
+	public static final String ORDERS 	 = "My Orders";
 	public static final String MD		 = "Market Data";
 	
 	
