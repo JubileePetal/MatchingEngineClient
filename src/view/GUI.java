@@ -101,6 +101,7 @@ public class GUI implements Observer {
 		return lordFrame;
 	}
 
+	//TODO GET RID OF THIS SHIZ
 	@Override
 	public void update(Observable observed, Object objectChanged) {
 		
@@ -113,9 +114,7 @@ public class GUI implements Observer {
 			//buildGUI();
 			
 			lordFrame.setVisible(true);
-		}
-		//System.out.println ("View      : Observable is " + observed.getClass() + ", object passed is " + objectChanged.getClass());
-		
+		}		
 	}
 
 }

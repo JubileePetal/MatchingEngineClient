@@ -74,7 +74,6 @@ public class Receiver implements Runnable {
 	public void tradeMade(String json) {
 		Trade trade = gson.fromJson(json, Trade.class);
 		dataHolder.addTrade(trade);
-		System.out.println("Received a trade!");
 	}
 	
 	public void orderAdded(String json) {
@@ -84,16 +83,7 @@ public class Receiver implements Runnable {
 	
 	public void logInAccepted(Message message) {
 		
-		Instrument[] instruments;
-		
-		System.out.println("Log-in accepted");
-		
-		instruments = gson.fromJson(message.getJson(), Instrument[].class);
-		for(Instrument i : instruments) {
-			System.out
-					.println(i.getName());
-		}
-		System.out.println(message.getJson());
+		Instrument[] instruments = gson.fromJson(message.getJson(), Instrument[].class);
 		dataHolder.setInstruments(instruments);
 		dataHolder.loggedIn();
 	}

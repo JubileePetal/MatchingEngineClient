@@ -27,8 +27,6 @@ public class InstrumentState {
 		synchronized(orders) {
 			orders.put(id, order);
 		}
-		
-		System.out.println("Put order id: " + id + " in list.");
 		getOrders();
 	}
 
@@ -59,7 +57,7 @@ public class InstrumentState {
 
 	
 	private void updateOrder(long id, int tradedQuantity) {
-		System.out.println("Here id: " + id);
+
 		Order order = orders.get(id);
 		
 		if(order != null) {
@@ -68,11 +66,8 @@ public class InstrumentState {
 			
 			if(oldQuantity == tradedQuantity) {
 				orders.remove(id);
-				System.out.println("removed order " + id);
 			} else {
 				order.setOrderQuantity(oldQuantity-tradedQuantity); 
-				System.out.println("new quantity for order " + id + ": " + (oldQuantity - tradedQuantity));
-
 			}
 			
 		}
@@ -91,10 +86,6 @@ public class InstrumentState {
 			orderInfoCollection.add(orderInfo);
 		}
 		
-		for(Object[] o : orderInfoCollection) {
-			System.out.println("Order" + o[0] + " " + o[1] + " price: " + o[2] + " quantity: " + o[3]);
-		}
-		
 		return orderInfoCollection;
 	}
 	
@@ -109,10 +100,6 @@ public class InstrumentState {
 			tradeInfo[2] = trade.getPrice();
 			tradeInfo[3] = trade.getQuantity();
 			tradeInfoCollection.add(tradeInfo);
-		}
-		
-		for(Object[] o : tradeInfoCollection) {
-			System.out.println("Trade" + o[0] + " " + o[1] + " price: " + o[2] + " quantity: " + o[3]);
 		}
 		
 		return tradeInfoCollection;
@@ -151,19 +138,13 @@ public class InstrumentState {
 					levelInfo[1] = "";
 					levelInfo[2] = sellLevels.get(i).getPrice();
 					levelInfo[3] = sellLevels.get(i).getQuantity();
+					MD.add(levelInfo);
 				} else {
 					MD.get(i)[2] = sellLevels.get(i).getPrice();
 					MD.get(i)[3] = sellLevels.get(i).getQuantity();
 				}
 			}
-
-			
-			for(Object[] o : MD) {
-				System.out.println("Buy price" + o[0] + " buy quant " + o[1] + " sell quant " + o[2] + " sell price " + o[3]);
-			}
 		}
-		
-
 		
 		return MD;
 	}

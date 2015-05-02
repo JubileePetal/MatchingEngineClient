@@ -30,7 +30,6 @@ public class DataHolder extends Observable {
 		
 		for(Instrument instrument : instruments) {
 			String name = instrument.getName();
-			System.out.println(name);
 			instrumentStates.put(name, new InstrumentState(myNickname, name));
 			trueInstruments.put(name, instrument);
 		}
@@ -63,12 +62,6 @@ public class DataHolder extends Observable {
 	}
 	
 	public InstrumentState getInstrumentState(String instrumentName) {
-		
-		System.out.println("got instrumentName: " + instrumentName);
-		for(String name : instrumentStates.keySet()) {
-			System.out.println("I have: " + name);
-		}
-		
 		return instrumentStates.get(instrumentName);
 	}
 

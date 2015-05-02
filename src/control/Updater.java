@@ -21,7 +21,6 @@ import view.View;
 public class Updater implements Observer{
 
 	private ArrayList<View> views;
-	//private JTree tree;
 	private TreeList treeList;
 	private DataHolder dataHolder;
 	private JFrame lordFrame; 
@@ -50,32 +49,14 @@ public class Updater implements Observer{
 
 	public void buildTree(){
 		
-		String instrumentNames [] = {"∙ Ericsson B", "∙ Apple"};
-		
-		//String[] test = dataHolder.getInstrumentNames();
-		
-//		for(String s : test){
-//			
-//			System.out.println("Value: " + s);
-//			
-//		}
-		
 		ArrayList<String> instrumentData = dataHolder.getInstrumentNames();
 		String[] instruments = new String[instrumentData.size()];
-		
 
-		
 		for (int i = 0; i < instrumentData.size(); i++) {
-			System.out.println("name: " + instrumentData.get(i));
 			instruments[i] = instrumentData.get(i);
 		}
-		
-		
-		
-		treeList.buildTreeNodes(instruments);
-		
-		
-		
+	
+		treeList.buildTreeNodes(instruments);		
 	}
 	
 	private void addTreeListener(){
@@ -90,7 +71,6 @@ public class Updater implements Observer{
 
 		    /* retrieve the node that was selected */ 
 		        Object nodeInfo = node.getUserObject();
-		        System.out.println(nodeInfo.toString() + " in updater!");
 		        updateView(nodeInfo.toString());
 		    }
 		});
@@ -117,9 +97,7 @@ public class Updater implements Observer{
 				InstrumentState is = dataHolder.getInstrumentState(instrumentName);
 				
 				if(v.getMyName().equals(OpStrings.ORDERS)){			
-					System.out.println("Instrument name:" + instrumentName);
-
-		
+	
 					v.setTableData(is.getOrders());
 				}
 				
@@ -153,10 +131,7 @@ public class Updater implements Observer{
 	
 
 	@Override
-	public void update(Observable observed, Object objectChanged) {
-		
-		System.out.println("------------ Trying to update --------");
-	
+	public void update(Observable observed, Object objectChanged) {	
 		
 		DataHolder dataHolder = (DataHolder)observed;
 		
@@ -201,14 +176,7 @@ public class Updater implements Observer{
 			
 		} else {
 			
-			
 			buildTree();
-			/*
-			TreePath path = treeList.getTree().getPathForRow(2);
-			treeList.getTree().setExpandsSelectedPaths(true);
-			treeList.getTree().setSelectionPath(path);
-			treeList.getTree().scrollPathToVisible(path);
-			*/
 			lordFrame.setVisible(true);
 		}
 		

@@ -29,11 +29,9 @@ public class Prompter {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	JTextField quantityField;
 	JComboBox typesCombo;
 	JTextField priceField;
-	
 	
 	public JPanel newOrderPrompt() {
 
