@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import control.Controller;
+import control.Updater;
 
 import models.DataHolder;
 import models.Order;
@@ -17,6 +18,7 @@ public class ButtonHolder {
 
 	private Controller controller;
 	private DataHolder dataHolder;
+	private Updater updater;
 	
 	/*OTHER*/
 	Prompter prompter;
@@ -38,9 +40,11 @@ public class ButtonHolder {
 						"Enter new order info", JOptionPane.OK_CANCEL_OPTION);
 				
 				if(result == JOptionPane.OK_OPTION) {
+					String currentInstrument = updater.getCurrentInstrument();
+					
 					Order order = prompter.getNewOrderInfo();	
 					order.setOrderOwner(dataHolder.getNickName());
-					order.setInstrument(dataHolder.getInstrument("Ericsson B"));
+					order.setInstrument(dataHolder.getInstrument(currentInstrument));
 					controller.sendOrder(order);
 				}
 				
@@ -59,5 +63,10 @@ public class ButtonHolder {
 	public void addController(Controller controller) {
 		this.controller = controller;
 		
+	}
+
+
+	public void addUpdater(Updater updater) {
+		this.updater = updater;
 	}
 }
