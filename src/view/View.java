@@ -120,12 +120,33 @@ public class View extends JPanel {
 		}		
 		
 		
-		for (int i = 0; i < table.getColumnCount(); i++) {
-		    TableColumn column = table.getColumnModel().getColumn(i);
-		    column.setCellRenderer(new FilterRenderer());
-		    column.setMinWidth(100);
+		/*********************************************/
+		
+		
+		try {
+			
+			
+			for (int i = 0; i < table.getColumnCount(); i++) {
+			    TableColumn column = table.getColumnModel().getColumn(i);
+			    column.setCellRenderer(new FilterRenderer());
+			    column.setMinWidth(100);
+			}
+			
+		} catch (ArrayIndexOutOfBoundsException exception) {
+			
+			System.out.println("HERE IT IS! THE WEIRD ERROR!!");
+			exception.printStackTrace();
 		}
+		
+		
 
+
+		
+		
+		
+		/**********************************************/
+		
+		
 		table.repaint();
 
 	}
@@ -140,7 +161,7 @@ public class View extends JPanel {
 		titlePanel.repaint();
 	}
 
-	public class FilterRenderer extends DefaultTableCellRenderer {
+	public class FilterRenderer  extends DefaultTableCellRenderer   {
 	    @Override
 	    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 	        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); 
