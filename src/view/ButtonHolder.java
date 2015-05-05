@@ -41,7 +41,6 @@ public class ButtonHolder {
 				
 				if(result == JOptionPane.OK_OPTION) {
 					String currentInstrument = updater.getCurrentInstrument();
-					
 					Order order = prompter.getNewOrderInfo();	
 					order.setOrderOwner(dataHolder.getNickName());
 					order.setInstrument(dataHolder.getInstrument(currentInstrument));
