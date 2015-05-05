@@ -8,17 +8,16 @@ public class InstrumentState {
 
 	BookStatus marketData;
 	HashMap<Long, Order> orders;
-	HashMap<Long, Trade> trades;
 
-	private String myNickname;
+	ArrayList<PartialTrade> trades;
+	
 	private String myInstrument;
 	
-	public InstrumentState(String nickname, String instrumentName) {
+	public InstrumentState(String instrumentName) {
 		
 		myInstrument = instrumentName;
-		myNickname = nickname;
 		orders = new HashMap<Long,Order>();
-		trades = new HashMap<Long,Trade>();
+		trades = new ArrayList<PartialTrade>();
 
 	}
 
@@ -30,31 +29,15 @@ public class InstrumentState {
 		getOrders();
 	}
 
-	public void addTrade(Trade trade) {
-		//TODO HAVE TO CHANGE ORDERS SO BUYER AND SELLER RECEIVE DIFFERENT
-		int tradedQuantity = trade.getQuantity();		
+	public void addTrade(PartialTrade partialTrade) {
+		int tradedQuantity = partialTrade.getOrder().getQuantity();
+		long orderID = partialTrade.getOrder().getId();
+		updateOrder(orderID, tradedQuantity);
 		
-		if(trade.getBuyer().equals(myNickname) && trade.getSeller().equals(myNickname)) {
-			if(trades.get(trade.getTradeID()) == null) {
-				long buyID = trade.getBuyOrderID();
-				updateOrder(buyID, tradedQuantity);
-				long sellID = trade.getSelOrderID();
-				updateOrder(sellID, tradedQuantity);
-			}			
-		} else if(trade.getBuyer().equals(myNickname)) {
-			long buyID = trade.getBuyOrderID();
-			updateOrder(buyID, tradedQuantity);
-
-		} else {
-			long sellID = trade.getSelOrderID();
-			updateOrder(sellID, tradedQuantity);
-		}
 		synchronized(trades) {
-			trades.put(trade.getTradeID(), trade);
+			trades.add(partialTrade);
 		}
-		getTrades();
 	}
-
 	
 	private void updateOrder(long id, int tradedQuantity) {
 
@@ -93,14 +76,26 @@ public class InstrumentState {
 		
 		ArrayList<Object[]> tradeInfoCollection = new ArrayList<Object[]>();
 		
-		for(Trade trade : trades.values()) {
-			Object[] tradeInfo = new Object[4];
-			tradeInfo[0] = trade.getTradeID();
-			tradeInfo[1] = (trade.getBuyer().equals(myNickname) ? "Buy" : "Sell");
-			tradeInfo[2] = trade.getPrice();
-			tradeInfo[3] = trade.getQuantity();
-			tradeInfoCollection.add(tradeInfo);
+		synchronized(trades) {
+			for(PartialTrade trade : trades) {
+				
+				String buyOrSell;
+				
+				if(trade.getOrder().isBuyOrSell() == OpCodes.BUY_ORDER) {
+					buyOrSell = "Buy";
+				} else {
+					buyOrSell = "Sell";
+				}
+				
+				Object[] tradeInfo = new Object[4];
+				tradeInfo[0] = trade.getTradeID();
+				tradeInfo[1] = buyOrSell;
+				tradeInfo[2] = trade.getOrder().getPrice();
+				tradeInfo[3] = trade.getOrder().getQuantity();
+				tradeInfoCollection.add(tradeInfo);
+			}
 		}
+
 		
 		return tradeInfoCollection;
 	}
@@ -148,4 +143,6 @@ public class InstrumentState {
 		
 		return MD;
 	}
+
+
 }

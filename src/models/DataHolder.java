@@ -30,7 +30,7 @@ public class DataHolder extends Observable {
 		
 		for(Instrument instrument : instruments) {
 			String name = instrument.getName();
-			instrumentStates.put(name, new InstrumentState(myNickname, name));
+			instrumentStates.put(name, new InstrumentState(name));
 			trueInstruments.put(name, instrument);
 		}
 		
@@ -65,14 +65,13 @@ public class DataHolder extends Observable {
 		return instrumentStates.get(instrumentName);
 	}
 
-	public void addTrade(Trade trade) {
-		
-		String instrumentName = trade.getInstrument().getName();
+	public void addTrade(PartialTrade partialTrade) {
+		String instrumentName = partialTrade.getOrder().getInstrument().getName();
 		InstrumentState instrumentState = instrumentStates.get(instrumentName);
-		instrumentState.addTrade(trade);
+		instrumentState.addTrade(partialTrade);
 		update(instrumentState);
 	}
-
+	
 	public String getNickName() {
 		return myNickname;
 	}
@@ -90,4 +89,6 @@ public class DataHolder extends Observable {
 			update(instrumentState);
 		}
 	}
+
+
 }

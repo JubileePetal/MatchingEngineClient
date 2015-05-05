@@ -183,4 +183,9 @@ public class Updater implements Observer{
 		
 	}
 
+	public String getCurrentInstrument() {
+
+		return currentInstrument;
+	}
+
 }
