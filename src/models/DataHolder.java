@@ -68,7 +68,13 @@ public class DataHolder extends Observable {
 	public void addTrade(PartialTrade partialTrade) {
 		String instrumentName = partialTrade.getOrder().getInstrument().getName();
 		InstrumentState instrumentState = instrumentStates.get(instrumentName);
-		instrumentState.addTrade(partialTrade);
+		
+		try {
+			instrumentState.addTrade(partialTrade);
+		} catch(NullPointerException e) {
+			return;
+		}
+		
 		update(instrumentState);
 	}
 	
