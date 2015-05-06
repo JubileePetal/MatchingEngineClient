@@ -40,11 +40,7 @@ public class Initializer {
 	
 
 	}
-	/*
-	public void promptUserToLogin() {
-		userInterface.logInPrompt();
-	}
-	*/
+
 	public void startListeningToServer() {
 		Thread t = new Thread(receiver);
 		t.start();
@@ -72,7 +68,7 @@ public class Initializer {
 		updater.setTreeList(userInterface.getTreeList());
 		updater.setLordFrame(userInterface.getLordFrame());
 		updater.setDataHolder(dataHolder);
-	   // updater.buildTree();
+
 	}
 	
 	public void initializeCommunicationObjects() {
@@ -154,8 +150,9 @@ public class Initializer {
 			System.exit(0);
 		}
 
-		controller.attemptLogIn(nick, userType);
-		//controller.sendOrder(); // TODO REMOVE THIS SHIZ
+		if(!controller.attemptLogIn(nick, userType)) {
+			logInPrompt();
+		}
 		dataHolder.setNickName(nick);
 	
 	}

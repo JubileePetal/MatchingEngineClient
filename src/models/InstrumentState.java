@@ -8,7 +8,6 @@ public class InstrumentState {
 
 	BookStatus marketData;
 	HashMap<Long, Order> orders;
-
 	ArrayList<PartialTrade> trades;
 	
 	private String myInstrument;
@@ -26,7 +25,6 @@ public class InstrumentState {
 		synchronized(orders) {
 			orders.put(id, order);
 		}
-		getOrders();
 	}
 
 	public void addTrade(PartialTrade partialTrade) {
@@ -104,10 +102,8 @@ public class InstrumentState {
 		return myInstrument;
 	}
 
-	
 	public void newMD(BookStatus bookStatus) {
-		marketData = bookStatus;
-		
+		marketData = bookStatus;		
 	}
 
 	public ArrayList<Object[]> getMarketData() {
@@ -143,6 +139,17 @@ public class InstrumentState {
 		
 		return MD;
 	}
-
+	
+	public BookStatus getTrueMarketData() {
+		return marketData;
+	}
+	
+	public HashMap<Long, Order> getTrueOrders() {
+		return orders;
+	}
+	
+	public ArrayList<PartialTrade> getTrueTrades() {
+		return trades;
+	}
 
 }

@@ -10,9 +10,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+import models.DataHolder;
 import models.Instrument;
 import models.Message;
 import models.OpCodes;
+import models.Order;
+import models.PartialTrade;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -39,23 +42,29 @@ public class ReceiverTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		receiver = new Receiver();
+		receiver = spy(new Receiver());
 		
 		abbrev = "ERIC A";
 		fullName = "Ericsson A";
 		type = OpCodes.SHARE;
 		
+
 		instrument = new Instrument();
 		instrument.setAbbreviation(abbrev);
 		instrument.setName(fullName);
 		instrument.setType(type);
-		
+		PartialTrade partialTrade = new PartialTrade();
+		Order order = new Order();
+		order.setInstrument(instrument);
+		partialTrade.setOrder(order);
+
 		Gson gson = new Gson();
 		
-		json = gson.toJson(instrument);
+		json = gson.toJson(partialTrade);
+		
 		
 		message = new Message();
-		message.setType(OpCodes.LOG_IN);
+		message.setType(OpCodes.PARTIAL_TRADE);
 		message.setJson(json);
 		
 		msg = gson.toJson(message);
@@ -83,6 +92,7 @@ public class ReceiverTest {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 		assertNotNull(inputStream);
 		receiver.addBufferedReader(reader);
+		receiver.addDataHolder(new DataHolder());
 	}
 
 	@Test
@@ -118,13 +128,12 @@ public class ReceiverTest {
 		assertEquals(unpackedMsg.getJson(),message.getJson());
 		
 	}
-	/*
+	
 	@Test
 	public void testRouteToDestination() {
-		Receiver receiver = mock(Receiver.class);
 		receiver.routeToDestination(message);
-		verify(receiver,atLeastOnce()).logInAccepted(message);
+		verify(receiver, times(1)).tradeMade(message.getJson());
 		
 	}
-	*/
+	
 }

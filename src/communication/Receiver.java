@@ -61,8 +61,7 @@ public class Receiver implements Runnable {
 		
 		switch (messageType) {
 			case OpCodes.LOG_IN_ACCEPTED: logInAccepted(message.getJson());
-											//logInAccepted(message);
-										   break; // SET MODEL TO HAVE THIS
+										   break; 
 			case OpCodes.ORDER_ADDED: orderAdded(message.getJson());
 										break;
 			case OpCodes.PARTIAL_TRADE: tradeMade(message.getJson());
@@ -72,7 +71,7 @@ public class Receiver implements Runnable {
 		}
 	}
 	
-	private void logInAccepted(String json) {
+	public void logInAccepted(String json) {
 		
 		String[] instrumentsAndMD = gson.fromJson(json, String[].class);
 		
@@ -105,13 +104,6 @@ public class Receiver implements Runnable {
 		System.out.println(json);
 		
 		dataHolder.addOrder(order);
-	}
-	
-	public void logInAccepted(Message message) {
-		
-		Instrument[] instruments = gson.fromJson(message.getJson(), Instrument[].class);
-		dataHolder.setInstruments(instruments);
-		dataHolder.loggedIn();
 	}
 	
 	public Message unpackMessage(String received) {
