@@ -33,6 +33,8 @@ public class Sender {
 
 		String jsonMsg = gson.toJson(message);
 		
+
+		
 		send(jsonMsg);
 
 	}

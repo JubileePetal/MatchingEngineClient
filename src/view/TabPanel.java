@@ -31,54 +31,9 @@ public class TabPanel extends JTabbedPane {
 	public TabPanel() {
 		
 		this.setUI(new BasicTabbedPaneUI());
-		
-		//this.setBackground(new Color(100, 100, 100));
-		this.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		this.setTabPlacement(JTabbedPane.TOP);
-		//buildTabbedPane();
-	}
-	
-	
-	public void buildTabbedPane() {
-		
-//		this.setUI(new BasicTabbedPaneUI());
-//		
-//		//this.setBackground(new Color(100, 100, 100));
-//		this.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-//		this.setTabPlacement(JTabbedPane.TOP);
-//	
-//
-//		
-//		
-//		this.addTab(OpStrings.ORDERS, v1.builListPane(OpStrings.ORDERS));
-//		this.addTab(OpStrings.HISTORY, v2.builListPane(OpStrings.HISTORY));
-//		this.addTab(OpStrings.MD, v3.builListPane(OpStrings.MD));
-		
-
-
-		
-		
-	}
-
-
-	public void buildViews(ViewBuilder v1, ViewBuilder v2, ViewBuilder v3) {
-		
-		this.setUI(new BasicTabbedPaneUI());
-		
-		//this.setBackground(new Color(100, 100, 100));
 		this.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		this.setTabPlacement(JTabbedPane.TOP);
 
-		
-		this.addTab(v1.getName(), v1.builListPane(OpStrings.ORDERS));
-		this.addTab(v2.getName(), v2.builListPane(OpStrings.TRADES));
-		this.addTab(v3.getName(), v3.builListPane(OpStrings.MD));
-		
 	}
-	
-	
-	
-	
-
 
 }

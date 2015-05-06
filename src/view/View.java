@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
-import view.ViewBuilder.FilterRenderer;
+
 
 public class View extends JPanel {
 
@@ -163,7 +163,8 @@ public class View extends JPanel {
 
 	public class FilterRenderer  extends DefaultTableCellRenderer   {
 	    @Override
-	    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+	    public Component getTableCellRendererComponent
+	    (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) throws ArrayIndexOutOfBoundsException  {
 	        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); 
 	        if (row % 2 == 0) {
 	            setOpaque(true);
