@@ -11,8 +11,7 @@ public class MainClient {
 		initializer.createUpdater();
 		initializer.initializeCommunicationObjects();
 		initializer.initializeMVC();
-		initializer.establishDependencies();
-		
+		initializer.establishDependencies();	
 		
 		initializer.startListeningToServer();
 		

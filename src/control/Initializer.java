@@ -5,17 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 
 import view.ButtonHolder;
 import view.GUI;
 import view.LogInPanel;
 import models.DataHolder;
-
-import com.google.gson.Gson;
 
 import communication.Receiver;
 import communication.Sender;

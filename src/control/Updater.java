@@ -5,15 +5,12 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
-import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreePath;
 
 import models.DataHolder;
 import models.InstrumentState;
-import models.OpCodes;
 import view.OpStrings;
 import view.TreeList;
 import view.View;
