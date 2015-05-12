@@ -101,8 +101,6 @@ public class Receiver implements Runnable {
 	public void orderAdded(String json) {
 		Order order = gson.fromJson(json, Order.class);
 		
-		System.out.println(json);
-		
 		dataHolder.addOrder(order);
 	}
 	
