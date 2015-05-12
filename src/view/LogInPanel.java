@@ -25,7 +25,7 @@ public class LogInPanel extends JPanel {
 		this.add(new JLabel("Nickname:"));
 		this.add(nickField);
 		
-		String[] userTypes = {"Trader", "Admin", "ISVR", "Regulator"};
+		String[] userTypes = {"Trader", "Admin", "ISVR", "Regulator", "Bot"};
 		userTypesCombo = new JComboBox(userTypes);
 		userTypesCombo.setSelectedIndex(0);
 		this.add(new JLabel("User type:"));
@@ -52,6 +52,7 @@ public class LogInPanel extends JPanel {
 			case 1: userType = OpCodes.ADMIN; break;
 			case 2: userType = OpCodes.ISVR; break;
 			case 3: userType = OpCodes.REGULATOR; break;
+			case 4: userType = OpCodes.BOT; break;
 		}
 		return userType;
 	}

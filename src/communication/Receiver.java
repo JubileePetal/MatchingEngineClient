@@ -1,4 +1,4 @@
-package communication;
+	package communication;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,6 +31,7 @@ public class Receiver implements Runnable {
 	private BufferedReader inFromServer;
 	private Gson gson;
 	private DataHolder dataHolder;
+	private int userType;
 	
 	public Receiver() {
 		gson = new Gson();
@@ -78,11 +79,15 @@ public class Receiver implements Runnable {
 		Instrument[] instruments = gson.fromJson(instrumentsAndMD[0], Instrument[].class);
 		dataHolder.setInstruments(instruments);
 		dataHolder.loggedIn();
-
+		//TODO dataHolder.addObserver(BOT);
+		dataHolder.deleteObservers();
+		
+		
 		BookStatus[] statusOfBooks = gson.fromJson(instrumentsAndMD[1], BookStatus[].class);
 		for(BookStatus bookStatus : statusOfBooks) {
 			if(bookStatus != null) {
 				dataHolder.newMD(bookStatus);
+				
 			}
 		}
 
@@ -128,4 +133,10 @@ public class Receiver implements Runnable {
 		this.dataHolder = dataHolder;
 		
 	}
+
+	public void setUserType(int userType) {
+		this.userType = userType;
+	}
+	
+	
 }

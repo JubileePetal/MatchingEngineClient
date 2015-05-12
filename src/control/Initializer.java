@@ -138,7 +138,10 @@ public class Initializer {
 
 		if(logInPanel.logInAttemptConfirmed()) {
 			nick = logInPanel.getNickName();
+			
 			userType = logInPanel.getUserType();
+			receiver.setUserType(userType);
+			
 			
 		} else {
 			System.exit(0);
