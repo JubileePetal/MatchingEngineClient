@@ -79,8 +79,8 @@ public class Receiver implements Runnable {
 		Instrument[] instruments = gson.fromJson(instrumentsAndMD[0], Instrument[].class);
 		dataHolder.setInstruments(instruments);
 		dataHolder.loggedIn();
-		//TODO dataHolder.addObserver(BOT);
-		dataHolder.deleteObservers();
+	
+
 		
 		
 		BookStatus[] statusOfBooks = gson.fromJson(instrumentsAndMD[1], BookStatus[].class);
