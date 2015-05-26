@@ -2,27 +2,17 @@
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 import models.BookStatus;
 import models.DataHolder;
 import models.Instrument;
 import models.Message;
 import models.OpCodes;
+
 import models.Order;
 import models.PartialTrade;
-import models.Trade;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import control.Controller;
-
 import control.Controller;
 
 public class Receiver implements Runnable {
